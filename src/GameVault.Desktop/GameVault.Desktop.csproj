@@ -8,4 +8,13 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameVault.Core\GameVault.Core.csproj" />
+    <ProjectReference Include="..\GameVault.Data\GameVault.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="QuestPDF" Version="2026.5.0" />
+  </ItemGroup>
+
 </Project>

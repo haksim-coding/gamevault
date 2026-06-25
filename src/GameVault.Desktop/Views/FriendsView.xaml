@@ -1,0 +1,173 @@
+<UserControl x:Class="GameVault.Views.FriendsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Style x:Key="FriendsButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="14,9" />
+            <Setter Property="Margin" Value="0,0,9,0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="FriendsTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+            <Setter Property="BorderBrush" Value="#303647" />
+            <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            <Setter Property="Padding" Value="11,9" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="42,35,42,40">
+            <TextBlock Text="Friends" FontSize="30" FontWeight="SemiBold" />
+            <TextBlock Text="Connect with GameVault users and share public library stats."
+                       Margin="0,7,0,0"
+                       Foreground="{StaticResource MutedTextBrush}" />
+
+            <Border Margin="0,28,0,0"
+                    Padding="24"
+                    Background="{StaticResource SurfaceBrush}"
+                    CornerRadius="14"
+                    Visibility="{Binding LoggedOutVisibility}">
+                <TextBlock Text="Please log in to use Friends."
+                           FontSize="18"
+                           FontWeight="SemiBold" />
+            </Border>
+
+            <StackPanel Visibility="{Binding LoggedInVisibility}">
+                <Border Margin="0,28,0,0"
+                        Padding="22"
+                        Background="{StaticResource SurfaceBrush}"
+                        CornerRadius="14">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Add friend by username"
+                                       Margin="0,0,0,8"
+                                       FontWeight="SemiBold" />
+                            <TextBox Width="330"
+                                     HorizontalAlignment="Left"
+                                     Text="{Binding FriendUsername, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource FriendsTextBoxStyle}" />
+                            <TextBlock Text="{Binding SyncStatus}"
+                                       Margin="0,7,0,0"
+                                       Foreground="{StaticResource MutedTextBrush}"
+                                       FontSize="11" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Bottom">
+                            <Button Content="Send Request"
+                                    Command="{Binding SendRequestCommand}"
+                                    Style="{StaticResource FriendsButtonStyle}" />
+                            <Button Content="Refresh"
+                                    Command="{Binding RefreshCommand}"
+                                    Style="{StaticResource FriendsButtonStyle}"
+                                    Background="{StaticResource SurfaceLightBrush}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <TextBlock Text="Pending requests"
+                           Margin="0,28,0,12"
+                           FontSize="21"
+                           FontWeight="SemiBold" />
+                <ItemsControl ItemsSource="{Binding PendingRequests}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,10"
+                                    Padding="17"
+                                    Background="{StaticResource SurfaceBrush}"
+                                    CornerRadius="11">
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="15" />
+                                        <TextBlock Text="{Binding Username, StringFormat=@{0}}"
+                                                   Foreground="{StaticResource MutedTextBrush}" />
+                                    </StackPanel>
+                                    <Button Content="Accept Request"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding DataContext.AcceptRequestCommand,
+                                                RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}"
+                                            Style="{StaticResource FriendsButtonStyle}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="Friends list"
+                           Margin="0,25,0,12"
+                           FontSize="21"
+                           FontWeight="SemiBold" />
+                <ItemsControl ItemsSource="{Binding Friends}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,12"
+                                    Padding="18"
+                                    Background="{StaticResource SurfaceBrush}"
+                                    CornerRadius="12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.3*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   FontSize="16"
+                                                   FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Username, StringFormat=@{0}}"
+                                                   Foreground="{StaticResource MutedTextBrush}" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="GAMES" FontSize="9"
+                                                   Foreground="{StaticResource MutedTextBrush}" />
+                                        <TextBlock Text="{Binding TotalGames}" Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2">
+                                        <TextBlock Text="PLAYTIME" FontSize="9"
+                                                   Foreground="{StaticResource MutedTextBrush}" />
+                                        <TextBlock Text="{Binding PlayTimeText}" Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="3">
+                                        <TextBlock Text="FAVORITE / LAST PLAYED" FontSize="9"
+                                                   Foreground="{StaticResource MutedTextBrush}" />
+                                        <TextBlock Text="{Binding FavoriteGenre}" Margin="0,4,0,0" />
+                                        <TextBlock Text="{Binding LastPlayedGame}"
+                                                   Foreground="{StaticResource MutedTextBrush}" />
+                                    </StackPanel>
+                                    <Button Grid.Column="4"
+                                            Content="Remove Friend"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding DataContext.RemoveFriendCommand,
+                                                RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}"
+                                            Style="{StaticResource FriendsButtonStyle}"
+                                            Background="#8D3F50" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="{Binding StatusMessage}"
+                           Margin="0,12,0,0"
+                           Foreground="#F0B56A"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

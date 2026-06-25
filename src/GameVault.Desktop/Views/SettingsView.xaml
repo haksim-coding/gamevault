@@ -1,0 +1,371 @@
+<UserControl x:Class="GameVault.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Style x:Key="SettingsButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="15,10" />
+            <Setter Property="Margin" Value="0,0,10,10" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="SecondarySettingsButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource SettingsButtonStyle}">
+            <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        </Style>
+        <Style x:Key="SettingsComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="ItemBorder"
+                                Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#292442" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource PrimaryBrush}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SettingsComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+            <Setter Property="BorderBrush" Value="#303647" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="MinWidth" Value="180" />
+            <Setter Property="Height" Value="42" />
+            <Setter Property="ItemContainerStyle"
+                    Value="{StaticResource SettingsComboBoxItemStyle}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Focusable="False"
+                                          IsChecked="{Binding IsDropDownOpen,
+                                              RelativeSource={RelativeSource TemplatedParent},
+                                              Mode=TwoWay}"
+                                          ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="BaseBorder"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="7">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="36" />
+                                                </Grid.ColumnDefinitions>
+                                                <ContentPresenter Margin="12,0,4,0"
+                                                                  HorizontalAlignment="Left"
+                                                                  VerticalAlignment="Center"
+                                                                  Content="{Binding SelectedItem,
+                                                                      RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                                                <Path Grid.Column="1"
+                                                      Width="8"
+                                                      Height="5"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Fill="{StaticResource MutedTextBrush}"
+                                                      Data="M 0 0 L 4 4 L 8 0 Z" />
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="BaseBorder"
+                                                        Property="BorderBrush"
+                                                        Value="{DynamicResource PrimaryBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter TargetName="BaseBorder"
+                                                        Property="Background"
+                                                        Value="{StaticResource SurfaceLightBrush}" />
+                                                <Setter TargetName="BaseBorder"
+                                                        Property="BorderBrush"
+                                                        Value="{DynamicResource PrimaryBrush}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+
+                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Fade">
+                                <Border MinWidth="{Binding ActualWidth,
+                                            RelativeSource={RelativeSource TemplatedParent}}"
+                                        Margin="0,5,0,0"
+                                        Padding="4"
+                                        Background="{StaticResource SurfaceBrush}"
+                                        BorderBrush="#303647"
+                                        BorderThickness="1"
+                                        CornerRadius="7">
+                                    <ScrollViewer MaxHeight="260"
+                                                  VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SettingsTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="Background" Value="{StaticResource SurfaceLightBrush}" />
+            <Setter Property="BorderBrush" Value="#303647" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            <Setter Property="Padding" Value="12,9" />
+            <Setter Property="Height" Value="42" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="42,35,42,40">
+            <TextBlock Text="Settings" FontSize="30" FontWeight="SemiBold" />
+            <TextBlock Text="Application preferences, library transfer and export security."
+                       Margin="0,7,0,0"
+                       Foreground="{StaticResource MutedTextBrush}"
+                       FontSize="14" />
+
+            <Border Margin="0,28,0,0"
+                    Padding="24"
+                    Background="{StaticResource SurfaceBrush}"
+                    CornerRadius="14">
+                <StackPanel>
+                    <TextBlock Text="APPLICATION"
+                               Foreground="{DynamicResource PrimaryBrush}"
+                               FontSize="11"
+                               FontWeight="Bold" />
+                    <Grid Margin="0,18,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Accent color" Margin="0,0,0,7" />
+                            <ComboBox ItemsSource="{Binding AccentColors}"
+                                      SelectedItem="{Binding SelectedAccentColor}"
+                                      Style="{StaticResource SettingsComboBoxStyle}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Language preference" Margin="0,0,0,7" />
+                            <ComboBox ItemsSource="{Binding Languages}"
+                                      SelectedItem="{Binding SelectedLanguage}"
+                                      Style="{StaticResource SettingsComboBoxStyle}" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Margin="0,15,0,15"
+                               Foreground="{StaticResource MutedTextBrush}"
+                               TextWrapping="Wrap">
+                        <Run Text="INI location: " />
+                        <Run Text="{Binding SettingsPath, Mode=OneWay}" />
+                    </TextBlock>
+                    <TextBlock Text="DOWNLOADS"
+                               Margin="0,8,0,0"
+                               Foreground="{DynamicResource PrimaryBrush}"
+                               FontSize="11"
+                               FontWeight="Bold" />
+                    <Grid Margin="0,18,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="18" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Default install folder" Margin="0,0,0,7" />
+                            <TextBox Text="{Binding DefaultInstallFolder, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource SettingsTextBoxStyle}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Download speed limit" Margin="0,0,0,7" />
+                            <ComboBox ItemsSource="{Binding DownloadSpeedLimits}"
+                                      SelectedItem="{Binding SelectedDownloadSpeedLimit}"
+                                      Style="{StaticResource SettingsComboBoxStyle}" />
+                        </StackPanel>
+                    </Grid>
+                    <Button Content="Save Settings"
+                            Margin="0,18,0,0"
+                            HorizontalAlignment="Left"
+                            Command="{Binding SaveSettingsCommand}"
+                            Style="{StaticResource SettingsButtonStyle}" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="Backup &amp; Transfer"
+                       Margin="0,28,0,5"
+                       FontSize="22"
+                       FontWeight="SemiBold" />
+            <TextBlock Text="Move your library, keep a secure backup, or create activity files for review."
+                       Foreground="{StaticResource MutedTextBrush}" />
+
+            <Grid Margin="0,18,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Padding="22"
+                        Background="{StaticResource SurfaceBrush}"
+                        CornerRadius="14">
+                    <StackPanel>
+                        <TextBlock Text="Game Library"
+                                   FontSize="19"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="Use this to move your game library between devices."
+                                   Margin="0,8,0,18"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   TextWrapping="Wrap" />
+                        <Button Content="Export Library"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ExportJsonCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"
+                                ToolTip="Format: JSON" />
+                        <Button Content="Import Library"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ImportJsonCommand}"
+                                Style="{StaticResource SecondarySettingsButtonStyle}"
+                                ToolTip="Format: JSON" />
+                        <TextBlock Text="Format: JSON"
+                                   Margin="0,6,0,0"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   FontSize="11" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2"
+                        Padding="22"
+                        Background="{StaticResource SurfaceBrush}"
+                        CornerRadius="14">
+                    <StackPanel>
+                        <TextBlock Text="Secure Backup"
+                                   FontSize="19"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="Creates an encrypted password-protected backup."
+                                   Margin="0,8,0,18"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   TextWrapping="Wrap" />
+                        <Button Content="Create Secure Backup"
+                                HorizontalAlignment="Left"
+                                Command="{Binding CreateSecureBackupCommand}"
+                                Style="{StaticResource SettingsButtonStyle}" />
+                        <Button Content="Restore Secure Backup"
+                                HorizontalAlignment="Left"
+                                Command="{Binding RestoreSecureBackupCommand}"
+                                Style="{StaticResource SecondarySettingsButtonStyle}" />
+                        <TextBlock Text="Format: .gvb"
+                                   Margin="0,6,0,0"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   FontSize="11" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0,18,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Padding="22"
+                        Background="{StaticResource SurfaceBrush}"
+                        CornerRadius="14">
+                    <StackPanel>
+                        <TextBlock Text="Activity History"
+                                   FontSize="19"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="Creates a readable activity history file for review or analysis."
+                                   Margin="0,8,0,18"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   TextWrapping="Wrap" />
+                        <Button Content="Export Activity History"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ExportXmlCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"
+                                ToolTip="Format: XML" />
+                        <Button Content="Open Activity History"
+                                HorizontalAlignment="Left"
+                                Command="{Binding OpenActivityHistoryCommand}"
+                                Style="{StaticResource SecondarySettingsButtonStyle}"
+                                ToolTip="Format: XML" />
+                        <TextBlock Text="Format: XML"
+                                   Margin="0,6,0,0"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   FontSize="11" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2"
+                        Padding="22"
+                        Background="{StaticResource SurfaceBrush}"
+                        CornerRadius="14">
+                    <StackPanel>
+                        <TextBlock Text="Activity Archive"
+                                   FontSize="19"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="Creates a compact archive of your activity history."
+                                   Margin="0,8,0,18"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   TextWrapping="Wrap" />
+                        <Button Content="Create Activity Archive"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ExportBinaryActivityCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"
+                                ToolTip="Format: .gvactivity" />
+                        <Button Content="Open Activity Archive"
+                                HorizontalAlignment="Left"
+                                Command="{Binding OpenActivityArchiveCommand}"
+                                Style="{StaticResource SecondarySettingsButtonStyle}"
+                                ToolTip="Reads the archive summary without importing it." />
+                        <TextBlock Text="Format: GameVault Activity Archive (.gvactivity)"
+                                   Margin="0,6,0,0"
+                                   Foreground="{StaticResource MutedTextBrush}"
+                                   FontSize="11"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Margin="0,18,0,0"
+                    Padding="18"
+                    Background="{StaticResource SurfaceBrush}"
+                    CornerRadius="12">
+                <TextBlock Text="{Binding StatusMessage}"
+                           Foreground="#71D9A0"
+                           TextWrapping="Wrap" />
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

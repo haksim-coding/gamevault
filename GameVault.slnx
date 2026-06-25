@@ -1,8 +1,0 @@
-<Solution>
-  <Project Path="../GameVault.Core/GameVault.Core.csproj" Id="f18d0d4d-554a-40d1-89ce-7b3aead7a116" />
-  <Project Path="../GameVault.Data/GameVault.Data.csproj" Id="d2a1771f-0002-4314-8b03-71ebfb3686c9" />
-  <Project Path="GameVault.Desktop.csproj">
-    <BuildDependency Project="../GameVault.Core/GameVault.Core.csproj" />
-    <BuildDependency Project="../GameVault.Data/GameVault.Data.csproj" />
-  </Project>
-</Solution>

@@ -13,3 +13,8 @@ obj/
 
 # VS Code
 .vscode/
+
+# GameVault API local server database
+src/GameVault.Api/gamevault_server.db
+src/GameVault.Api/gamevault_server.db-shm
+src/GameVault.Api/gamevault_server.db-wal
