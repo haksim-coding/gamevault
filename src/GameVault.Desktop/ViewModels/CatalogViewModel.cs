@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using GameVault.Data;
+using GameVault.Localization;
 using GameVault.Services;
 
 namespace GameVault.ViewModels;
@@ -13,19 +14,24 @@ public class CatalogViewModel : ViewModelBase
     private readonly DownloadManagerService _downloadManagerService;
     private readonly GameRepository _gameRepository;
     private readonly ActivityLogRepository _activityLogRepository;
+    private readonly IniSettingsService _settingsService;
     private bool _isRefreshing;
+    private bool _isCatalogTrusted;
     private string _statusMessage = string.Empty;
+    private string _signatureStatus = LocalizationService.Instance.Get("CatalogSignatureNotVerified");
 
     public CatalogViewModel(
         CatalogService catalogService,
         DownloadManagerService downloadManagerService,
         GameRepository gameRepository,
-        ActivityLogRepository activityLogRepository)
+        ActivityLogRepository activityLogRepository,
+        IniSettingsService settingsService)
     {
         _catalogService = catalogService;
         _downloadManagerService = downloadManagerService;
         _gameRepository = gameRepository;
         _activityLogRepository = activityLogRepository;
+        _settingsService = settingsService;
 
         RefreshCatalogCommand = new AsyncRelayCommand(RefreshCatalogAsync);
         InstallCommand = new RelayCommand(StartInstall);
@@ -48,6 +54,12 @@ public class CatalogViewModel : ViewModelBase
         private set => SetProperty(ref _statusMessage, value);
     }
 
+    public string SignatureStatus
+    {
+        get => _signatureStatus;
+        private set => SetProperty(ref _signatureStatus, value);
+    }
+
     public ICommand RefreshCatalogCommand { get; }
     public ICommand InstallCommand { get; }
     public ICommand CancelCommand { get; }
@@ -59,17 +71,24 @@ public class CatalogViewModel : ViewModelBase
     public async Task RefreshCatalogAsync()
     {
         IsRefreshing = true;
-        StatusMessage = "Loading server catalog...";
+        _isCatalogTrusted = false;
+        StatusMessage = LocalizationService.Instance.Get("LoadingServerCatalog");
+        SignatureStatus = LocalizationService.Instance.Get("VerifyingCatalogSignature");
 
         try
         {
-            var catalog = await _catalogService.GetCatalogAsync(AppSettings.DownloadManifestUrl);
+            var settings = _settingsService.Load();
+            var catalog = await _catalogService.GetCatalogAsync(settings.DownloadManifestUrl);
+            _isCatalogTrusted = true;
+            SignatureStatus = LocalizationService.Instance.Get("CatalogSignatureVerified");
 
             Games.Clear();
             var coverLoadTasks = new List<Task<bool>>();
             foreach (var manifestItem in catalog)
             {
-                var item = new CatalogGameItemViewModel(manifestItem);
+                manifestItem.ApiBaseUrl = settings.ApiBaseUrl;
+                manifestItem.FilesBaseUrl = settings.FilesBaseUrl;
+                var item = new CatalogGameItemViewModel(manifestItem, _isCatalogTrusted);
                 var game = _gameRepository.GetGameByCatalogId(manifestItem.Id);
                 if (game is not null)
                 {
@@ -108,13 +127,29 @@ public class CatalogViewModel : ViewModelBase
 
             _activityLogRepository.AddEntry("Catalog refreshed");
             StatusMessage = Games.Count == 0
-                ? "Server catalog is empty."
-                : $"Catalog refreshed. {Games.Count} games available.";
+                ? LocalizationService.Instance.Get("ServerCatalogEmpty")
+                : LocalizationService.Instance.Format("CatalogRefreshedCount", Games.Count);
+        }
+        catch (CatalogSignatureException exception)
+        {
+            _isCatalogTrusted = false;
+            Games.Clear();
+            SignatureStatus = exception.Failure switch
+            {
+                CatalogSignatureFailure.PublicKeyMissing => LocalizationService.Instance.Get("CatalogSignatureVerificationFailed"),
+                CatalogSignatureFailure.SignatureMissing => LocalizationService.Instance.Get("CatalogSignatureMissing"),
+                CatalogSignatureFailure.InvalidSignature => LocalizationService.Instance.Get("CatalogSignatureInvalid"),
+                _ => LocalizationService.Instance.Get("CatalogSignatureVerificationFailed")
+            };
+            StatusMessage = LocalizationService.Instance.Get("CatalogCannotBeTrusted");
+            _activityLogRepository.AddEntry("Catalog signature rejected");
         }
         catch
         {
+            _isCatalogTrusted = false;
             Games.Clear();
-            StatusMessage = "Server catalog is unavailable.";
+            SignatureStatus = LocalizationService.Instance.Get("CatalogSignatureVerificationFailed");
+            StatusMessage = LocalizationService.Instance.Get("ServerCatalogUnavailable");
         }
         finally
         {
@@ -145,6 +180,12 @@ public class CatalogViewModel : ViewModelBase
     {
         if (parameter is not CatalogGameItemViewModel item)
         {
+            return;
+        }
+
+        if (!_isCatalogTrusted)
+        {
+            StatusMessage = LocalizationService.Instance.Get("CatalogCannotBeTrusted");
             return;
         }
 

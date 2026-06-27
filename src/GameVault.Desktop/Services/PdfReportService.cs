@@ -2,6 +2,7 @@ using System.IO;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using GameVault.Localization;
 
 namespace GameVault.Services;
 
@@ -38,10 +39,11 @@ public class PdfReportService
                         .FontSize(24)
                         .Bold()
                         .FontColor("#7C5CFC");
-                    column.Item().Text("Personal Game Library Report")
+                    column.Item().Text(LocalizationService.Instance.Get("PersonalGameLibraryReport"))
                         .FontSize(13)
                         .SemiBold();
-                    column.Item().Text($"Generated: {DateTime.Now:dd MMMM yyyy HH:mm}")
+                    column.Item().Text(LocalizationService.Instance.Format(
+                        "GeneratedAt", $"{DateTime.Now:dd MMMM yyyy HH:mm}"))
                         .FontColor(Colors.Grey.Darken1);
                 });
 
@@ -51,17 +53,17 @@ public class PdfReportService
 
                     column.Item().Element(container => ComposeProfile(container, data));
                     column.Item().Element(container => ComposeStatistics(container, data));
-                    column.Item().Text("Game Library").FontSize(15).Bold();
+                    column.Item().Text(LocalizationService.Instance.Get("GameLibrary")).FontSize(15).Bold();
                     column.Item().Element(container => ComposeGamesTable(container, data));
-                    column.Item().Text("Achievements").FontSize(15).Bold();
+                    column.Item().Text(LocalizationService.Instance.Get("Achievements")).FontSize(15).Bold();
                     column.Item().Element(container => ComposeAchievements(container, data));
                 });
 
                 page.Footer().AlignCenter().Text(text =>
                 {
-                    text.Span("GameVault • Page ");
+                    text.Span($"GameVault • {LocalizationService.Instance.Get("Page")}");
                     text.CurrentPageNumber();
-                    text.Span(" of ");
+                    text.Span(LocalizationService.Instance.Get("Of"));
                     text.TotalPages();
                 });
             });
@@ -74,10 +76,12 @@ public class PdfReportService
     {
         container.Background("#F4F1FF").Padding(14).Column(column =>
         {
-            column.Item().Text("User Profile").FontSize(14).Bold().FontColor("#5B3FD4");
+            column.Item().Text(LocalizationService.Instance.Get("UserProfile")).FontSize(14).Bold().FontColor("#5B3FD4");
             column.Item().PaddingTop(5).Text($"{data.Profile.DisplayName} (@{data.Profile.Username})");
-            column.Item().Text($"Favorite game: {ValueOrFallback(data.Profile.FavoriteGame)}");
-            column.Item().Text($"Bio: {ValueOrFallback(data.Profile.Bio)}");
+            column.Item().Text(LocalizationService.Instance.Format(
+                "FavoriteGameValue", ValueOrFallback(data.Profile.FavoriteGame)));
+            column.Item().Text(LocalizationService.Instance.Format(
+                "BioValue", ValueOrFallback(data.Profile.Bio)));
         });
     }
 
@@ -89,17 +93,18 @@ public class PdfReportService
             {
                 row.Spacing(8);
                 row.RelativeItem().Element(item =>
-                    StatisticCard(item, "Total games", data.TotalGames.ToString()));
+                StatisticCard(item, LocalizationService.Instance.Get("TotalGames"), data.TotalGames.ToString()));
                 row.RelativeItem().Element(item =>
-                    StatisticCard(item, "Total playtime", FormatMinutes(data.TotalPlayTimeMinutes)));
+                StatisticCard(item, LocalizationService.Instance.Get("TotalPlayTime"), FormatMinutes(data.TotalPlayTimeMinutes)));
                 row.RelativeItem().Element(item =>
-                    StatisticCard(item, "Top genre", data.MostCommonGenre));
+                StatisticCard(item, LocalizationService.Instance.Get("TopGenre"), data.MostCommonGenre));
                 row.RelativeItem().Element(item =>
-                    StatisticCard(item, "Unlocked", data.UnlockedAchievementCount.ToString()));
+                StatisticCard(item, LocalizationService.Instance.Get("Unlocked"), data.UnlockedAchievementCount.ToString()));
             });
 
             column.Item().PaddingTop(8).Text(
-                $"Newest added game: {data.NewestAddedGame?.Title ?? "No games"}");
+            LocalizationService.Instance.Format("NewestGameValue",
+                data.NewestAddedGame?.Title ?? LocalizationService.Instance.Get("NoGames")));
         });
     }
 
@@ -130,11 +135,11 @@ public class PdfReportService
 
             table.Header(header =>
             {
-                HeaderCell(header.Cell(), "Title");
-                HeaderCell(header.Cell(), "Genre");
-                HeaderCell(header.Cell(), "Year");
-                HeaderCell(header.Cell(), "Developer");
-                HeaderCell(header.Cell(), "Playtime");
+            HeaderCell(header.Cell(), LocalizationService.Instance.Get("Title"));
+            HeaderCell(header.Cell(), LocalizationService.Instance.Get("Genre"));
+            HeaderCell(header.Cell(), LocalizationService.Instance.Get("Year"));
+            HeaderCell(header.Cell(), LocalizationService.Instance.Get("Developer"));
+            HeaderCell(header.Cell(), LocalizationService.Instance.Get("Playtime"));
             });
 
             foreach (var game in data.Games)
@@ -170,8 +175,8 @@ public class PdfReportService
                         });
                         row.AutoItem().AlignMiddle().Text(
                                 achievement.IsUnlocked
-                                    ? $"Unlocked {achievement.UnlockedAt:dd MMM yyyy}"
-                                    : "Locked")
+                        ? LocalizationService.Instance.Format("UnlockedOn", $"{achievement.UnlockedAt:dd MMM yyyy}")
+                        : LocalizationService.Instance.Get("Locked"))
                             .FontSize(8)
                             .FontColor(achievement.IsUnlocked ? "#4C9B70" : Colors.Grey.Darken1);
                     });
@@ -198,5 +203,5 @@ public class PdfReportService
     }
 
     private static string ValueOrFallback(string value) =>
-        string.IsNullOrWhiteSpace(value) ? "Not specified" : value;
+        string.IsNullOrWhiteSpace(value) ? LocalizationService.Instance.Get("NotSpecified") : value;
 }

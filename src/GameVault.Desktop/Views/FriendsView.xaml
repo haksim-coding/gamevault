@@ -1,6 +1,7 @@
 <UserControl x:Class="GameVault.Views.FriendsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GameVault.Localization">
     <UserControl.Resources>
         <Style x:Key="FriendsButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White" />
@@ -22,8 +23,8 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="42,35,42,40">
-            <TextBlock Text="Friends" FontSize="30" FontWeight="SemiBold" />
-            <TextBlock Text="Connect with GameVault users and share public library stats."
+            <TextBlock Text="{loc:Loc Friends}" FontSize="30" FontWeight="SemiBold" />
+            <TextBlock Text="{loc:Loc FriendsDescription}"
                        Margin="0,7,0,0"
                        Foreground="{StaticResource MutedTextBrush}" />
 
@@ -32,7 +33,7 @@
                     Background="{StaticResource SurfaceBrush}"
                     CornerRadius="14"
                     Visibility="{Binding LoggedOutVisibility}">
-                <TextBlock Text="Please log in to use Friends."
+                <TextBlock Text="{loc:Loc LogInForFriends}"
                            FontSize="18"
                            FontWeight="SemiBold" />
             </Border>
@@ -48,7 +49,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Add friend by username"
+                            <TextBlock Text="{loc:Loc AddFriendByUsername}"
                                        Margin="0,0,0,8"
                                        FontWeight="SemiBold" />
                             <TextBox Width="330"
@@ -63,10 +64,10 @@
                         <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
                                     VerticalAlignment="Bottom">
-                            <Button Content="Send Request"
+                            <Button Content="{loc:Loc SendRequest}"
                                     Command="{Binding SendRequestCommand}"
                                     Style="{StaticResource FriendsButtonStyle}" />
-                            <Button Content="Refresh"
+                            <Button Content="{loc:Loc Refresh}"
                                     Command="{Binding RefreshCommand}"
                                     Style="{StaticResource FriendsButtonStyle}"
                                     Background="{StaticResource SurfaceLightBrush}" />
@@ -74,7 +75,7 @@
                     </Grid>
                 </Border>
 
-                <TextBlock Text="Pending requests"
+                        <TextBlock Text="{loc:Loc PendingRequests}"
                            Margin="0,28,0,12"
                            FontSize="21"
                            FontWeight="SemiBold" />
@@ -93,7 +94,7 @@
                                         <TextBlock Text="{Binding Username, StringFormat=@{0}}"
                                                    Foreground="{StaticResource MutedTextBrush}" />
                                     </StackPanel>
-                                    <Button Content="Accept Request"
+                                            <Button Content="{loc:Loc AcceptRequest}"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             Command="{Binding DataContext.AcceptRequestCommand,
@@ -106,7 +107,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <TextBlock Text="Friends list"
+                        <TextBlock Text="{loc:Loc FriendsList}"
                            Margin="0,25,0,12"
                            FontSize="21"
                            FontWeight="SemiBold" />
@@ -133,24 +134,24 @@
                                                    Foreground="{StaticResource MutedTextBrush}" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="1">
-                                        <TextBlock Text="GAMES" FontSize="9"
+                                                    <TextBlock Text="{loc:Loc GamesUpper}" FontSize="9"
                                                    Foreground="{StaticResource MutedTextBrush}" />
                                         <TextBlock Text="{Binding TotalGames}" Margin="0,4,0,0" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="2">
-                                        <TextBlock Text="PLAYTIME" FontSize="9"
+                                                    <TextBlock Text="{loc:Loc FriendsPlaytimeUpper}" FontSize="9"
                                                    Foreground="{StaticResource MutedTextBrush}" />
                                         <TextBlock Text="{Binding PlayTimeText}" Margin="0,4,0,0" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="3">
-                                        <TextBlock Text="FAVORITE / LAST PLAYED" FontSize="9"
+                                                    <TextBlock Text="{loc:Loc FavoriteLastPlayed}" FontSize="9"
                                                    Foreground="{StaticResource MutedTextBrush}" />
                                         <TextBlock Text="{Binding FavoriteGenre}" Margin="0,4,0,0" />
                                         <TextBlock Text="{Binding LastPlayedGame}"
                                                    Foreground="{StaticResource MutedTextBrush}" />
                                     </StackPanel>
                                     <Button Grid.Column="4"
-                                            Content="Remove Friend"
+                                                        Content="{loc:Loc RemoveFriend}"
                                             VerticalAlignment="Center"
                                             Command="{Binding DataContext.RemoveFriendCommand,
                                                 RelativeSource={RelativeSource AncestorType=ItemsControl}}"

@@ -1,7 +1,9 @@
 using System.Windows.Input;
 using System.Windows;
 using System.Net.Http;
+using GameVault.Core.Services;
 using GameVault.Data;
+using GameVault.Localization;
 using GameVault.Services;
 
 namespace GameVault.ViewModels;
@@ -24,16 +26,15 @@ public class MainWindowViewModel : ViewModelBase
             profileRepository,
             achievementRepository);
         var settingsService = new IniSettingsService();
-        settingsService.Load();
+        var appSettings = settingsService.Load();
         _authSession = new AuthSession();
-        var apiClient = new GameVaultApiClient(AppSettings.ApiBaseUrl, _authSession);
+        var apiClient = new GameVaultApiClient(appSettings.ApiBaseUrl, _authSession);
         var statsSyncService = new PublicStatsSyncService(
             apiClient,
             _authSession,
             repository,
             activityLogRepository);
         var exportService = new LibraryExportService(repository);
-        var encryptionService = new AesEncryptionService();
         var httpClient = new HttpClient();
         var catalogService = new CatalogService(httpClient);
         var downloadManagerService = new DownloadManagerService(
@@ -49,12 +50,14 @@ public class MainWindowViewModel : ViewModelBase
             activityLogRepository,
             dialogService,
             launcherService,
-            downloadManagerService);
+            downloadManagerService,
+            settingsService);
         CatalogViewModel = new CatalogViewModel(
             catalogService,
             downloadManagerService,
             repository,
-            activityLogRepository);
+            activityLogRepository,
+            settingsService);
         ProfileViewModel = new ProfileViewModel(profileRepository, achievementRepository);
         ReportsViewModel = new ReportsViewModel(reportDataService, new PdfReportService());
         AuthViewModel = new AuthViewModel(apiClient, _authSession, statsSyncService);
@@ -66,13 +69,25 @@ public class MainWindowViewModel : ViewModelBase
             settingsService,
             exportService,
             new ActivityLogArchiveService(activityLogRepository),
-            new SecureBackupService(exportService, encryptionService),
+            new SecureBackupService(exportService, new SecureBackupPayloadService()),
+            new BackupToolVerificationService(),
             activityLogRepository,
-            new PasswordDialogService());
+            new PasswordDialogService(),
+            new ServerDiscoveryClient(settingsService, activityLogRepository),
+            new ExternalRestService(httpClient),
+            apiClient);
         _authSession.PropertyChanged += (_, _) =>
         {
             OnPropertyChanged(nameof(AccountName));
             OnPropertyChanged(nameof(AccountStatus));
+        };
+        LocalizationService.Instance.LanguageChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(AccountName));
+            OnPropertyChanged(nameof(AccountStatus));
+            HomeViewModel.LoadRecentActivity();
+            ProfileViewModel.Refresh();
+            ReportsViewModel.Refresh();
         };
         LibraryViewModel.GamesChanged += () =>
         {
@@ -155,11 +170,11 @@ public class MainWindowViewModel : ViewModelBase
 
     public string AccountName => _authSession.IsLoggedIn
         ? _authSession.Username
-        : "Not logged in";
+        : LocalizationService.Instance.Get("NotLoggedIn");
 
     public string AccountStatus => _authSession.IsLoggedIn
-        ? $"{_authSession.Role} · online features enabled"
-        : "Open Account to log in";
+        ? LocalizationService.Instance.Format("OnlineFeaturesEnabled", _authSession.Role)
+        : LocalizationService.Instance.Get("OpenAccountToLogIn");
 
     public ViewModelBase CurrentViewModel
     {

@@ -18,3 +18,7 @@ obj/
 src/GameVault.Api/gamevault_server.db
 src/GameVault.Api/gamevault_server.db-shm
 src/GameVault.Api/gamevault_server.db-wal
+
+# RSA manifest signing private keys must never be committed
+private_key.pem
+*.private.pem

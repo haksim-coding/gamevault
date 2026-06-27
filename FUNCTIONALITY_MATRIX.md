@@ -11,7 +11,7 @@
 
 - WPF desktop aplikacija na .NET 10
 - MVVM arhitektura
-- Projekti: `GameVault.Desktop`, `GameVault.Core`, `GameVault.Data`, `GameVault.Api`
+- Projekti: `GameVault.Desktop`, `GameVault.Core`, `GameVault.Data`, `GameVault.Api`, `GameVault.DiscoveryServer`, `GameVault.BackupTool`, `GameVault.ManifestSigner`
 - SQLite + EF Core lokalna baza za desktop podatke
 - SQLite + EF Core server baza za REST API
 - Navigacija: Home, Library, Catalog, Profile, Friends, Account, Reports, Settings
@@ -19,6 +19,9 @@
 - Server catalog preko HTTP manifesta
 - Catalog cover slike se ucitavaju iz `coverUrl` ili fallback putanje `/files/covers/{catalogId}.png`
 - Download manager za ZIP igre s progressom, cancellationom, speed limitom, SHA256 provjerom i unzip installom
+- RSA potpisani download manifest mora biti verificiran prije prikaza Cataloga
+- Privremeni ZIP se brise nakon uspjeha, otkazivanja ili neuspjele instalacije
+- Catalog instalacije podrzavaju sigurno brisanje fileova samo unutar GameVault install foldera
 - Lokalni korisnicki profil s avatarom spremljenim kao BLOB
 - Osnovni achievement sustav
 - Statistika biblioteke i PDF report
@@ -66,11 +69,14 @@ Status: **Implementirano**
 
 ## 3. Lokalizacija
 
-- [ ] Hrvatski jezik za cijeli UI
-- [ ] Engleski resource sustav
-- [x] HR/EN preferenca sprema se u INI datoteku
+- [x] Hrvatski resource file
+- [x] English resource file / fallback
+- [x] Settings omogućuje izbor jezika
+- [x] Language preference se sprema u INI
+- [x] UI se prikazuje na odabranom jeziku
+- [x] Prevedeni su glavni ekrani, gumbi, dialog poruke i statusi
 
-Status: **Djelomicno - preferenca postoji, UI jos nije preveden**
+Status: **Implementirano**
 
 ## 4. INI / Registry postavke
 
@@ -204,21 +210,37 @@ Status: **Implementirano**
 - [x] Provjera postoji li executable
 - [x] Jasna poruka za neispravan path
 - [x] Activity log nakon uspjesnog pokretanja
-- [ ] Zasebni `BackupTool.exe` i povratni exit code
+- [x] Zasebni `GameVault.BackupTool.exe` i povratni exit code
+- [x] `GameVault.Desktop` pokrece vanjski proces `GameVault.BackupTool.exe`
+- [x] Desktop procesu prosljeduje path do `.gvb` datoteke kroz argumente
+- [x] Desktop salje password kroz redirected `StandardInput`
+- [x] Desktop cita `StandardOutput`/`StandardError` i `ExitCode`
+- [x] `ExitCode` se koristi za prikaz rezultata korisniku
 
-Status: **Djelomicno implementirano**
+Status: **Implementirano**
 
 ## 15. TCP
 
-- [ ] TCP server i klijent
+- [x] `GameVault.Desktop` kao TCP klijent
+- [x] `GameVault.DiscoveryServer` kao zasebna server aplikacija
+- [x] TCP se koristi za pouzdan dohvat statusa i konfiguracije servera
+- [x] Desktop salje zahtjev `GAMEVAULT_STATUS_V1`
+- [x] DiscoveryServer vraca JSON status/config s `apiBaseUrl`, `filesBaseUrl` i `manifestUrl`
+- [x] Network Diagnostics prikazuje TCP status/config bez brisanja zadnjih valjanih URL-ova pri gresci
+- [x] Ovo nije chat, calculator, screenshot ili file transfer primjer
 
-Status: **Nije implementirano**
+Status: **Implementirano**
 
 ## 16. UDP
 
-- [ ] UDP discovery
+- [x] `GameVault.Desktop` salje UDP broadcast na port 47891
+- [x] `GameVault.DiscoveryServer` odgovara s IP adresom servera i TCP portom
+- [x] UDP se koristi samo za LAN discovery
+- [x] Nakon UDP odgovora Desktop koristi TCP za detaljnu konfiguraciju
+- [x] Network Diagnostics prikazuje LAN server IP pronadjen preko UDP DiscoveryServera
+- [x] Ovo nije chat, calculator, screenshot ili file transfer primjer
 
-Status: **Nije implementirano**
+Status: **Implementirano**
 
 ## 17. HTTP
 
@@ -242,9 +264,14 @@ Status: **Implementirano**
 
 ## 20. Vanjski REST servis
 
-- [-] Nije koristen vanjski servis; projekt koristi vlastiti REST API
+- [x] `GameVault.Desktop` koristi vanjski REST API ipify
+- [x] Endpoint: `https://api.ipify.org?format=json`
+- [x] `HttpClient` GET zahtjev
+- [x] JSON response se deserijalizira u `PublicIpResponse` DTO
+- [x] Public client IP prikazuje se u Network Diagnostics panelu
+- [x] Implementirano je rukovanje greskama ako vanjski servis nije dostupan
 
-Status: **Opcionalno / preskace se**
+Status: **Implementirano**
 
 ## 21. Vlastiti REST servis
 
@@ -275,6 +302,7 @@ Status: **Implementirano**
 ## 23. AES
 
 - [x] AES-GCM sifriranje secure `.gvb` backupa
+- [x] AES ostaje odvojen od javnog download manifesta; manifest se potpisuje, ne enkriptira
 - [x] AES-GCM desifriranje pri restoreu
 - [x] Kljuc izveden iz lozinke pomocu PBKDF2-SHA256
 - [x] Slucajni salt i nonce
@@ -285,10 +313,13 @@ Status: **Implementirano**
 
 ## 24. RSA
 
-- [ ] Generiranje kljuceva
-- [ ] Potpisivanje ili enkripcija
+- [x] `GameVault.ManifestSigner` generira RSA private/public key pair
+- [x] Private key potpisuje originalne byteove `downloads.json`
+- [x] Desktop sadrzi samo public key i verificira manifest
+- [x] RSA-SHA256 s PKCS#1 v1.5 paddingom koristi se jednako za sign/verify
+- [x] Neispravan ili nedostajuci potpis blokira Catalog i download
 
-Status: **Nije implementirano**
+Status: **Implementirano za potpisani server manifest**
 
 ## 25. SHA-256
 
@@ -296,6 +327,7 @@ Status: **Nije implementirano**
 - [x] Hash je spremljen unutar AES-enkriptiranog `.gvb` sadrzaja
 - [x] Automatska provjera nakon dekripcije i prije importa
 - [x] SHA256 provjera ZIP downloada iz server manifesta
+- [x] SHA256 se koristi unutar RSA potpisa manifesta, odvojeno od ZIP hash provjere
 - [x] Neuspjesna provjera integriteta blokira import/install
 - [x] Plain JSON/XML/`.gvactivity` namjerno nema SHA256
 
@@ -303,9 +335,11 @@ Status: **Implementirano**
 
 ## 26. Digitalni potpis
 
-- [ ] Potpis i provjera exportiranih datoteka
+- [x] `downloads.json.sig` je odvojeni digitalni potpis server manifesta
+- [x] Desktop verificira potpis prije JSON parsiranja i prikaza Cataloga
+- [x] Promijenjen manifest bez novog potpisa odbija se kao nepouzdan
 
-Status: **Nije implementirano**
+Status: **Implementirano za download manifest**
 
 ## 27. Staticka biblioteka
 
@@ -434,10 +468,12 @@ Status: **Nije implementirano**
 - [x] Plain JSON/XML/`.gvactivity` export bez enkripcije i hash sidecara
 - [x] Create Secure Backup
 - [x] Restore Secure Backup
+- [x] Check Backup File kao dodatna provjera kroz vanjski proces
 - [x] GameVault `.gvb` ekstenzija
 - [x] AES-GCM enkripcija secure backupa
 - [x] Automatska SHA256 provjera internog JSON payload-a
 - [x] Restore se prekida ako lozinka ili integrity provjera nisu valjani
+- [x] Create/Restore ostaju u Desktop aplikaciji i nisu zamijenjeni vanjskim alatom
 - [x] PBKDF2-SHA256 derivacija kljuca
 - [x] Password dialog
 
@@ -495,15 +531,46 @@ Status: **Nije implementirano**
 - [x] Remove friend
 - [x] Admin-only users endpoint
 
+## Milestone 9 - TCP/UDP Server Discovery
+
+- [x] `GameVault.DiscoveryServer` zaseban console/worker-style projekt
+- [x] UDP discovery server slusa `GAMEVAULT_DISCOVER_REQUEST` na portu 47891
+- [x] UDP response vraca `serverName`, `serverIp` i `tcpStatusPort`
+- [x] TCP status/config server slusa `GAMEVAULT_STATUS_V1` na portu 47892
+- [x] TCP response vraca JSON s API URL-om, files URL-om, manifest URL-om, catalog summary i server time
+- [x] Server IP i URL vrijednosti dolaze iz `appsettings.json`, environment varova ili fallback lokalnog IP-a
+- [x] Desktop ima `ServerDiscoveryClient` / `IServerDiscoveryClient`
+- [x] Settings ekran ima `Find GameVault Server`
+- [x] Uspjesan TCP status/config automatski sprema `ApiBaseUrl`, `FilesBaseUrl` i `DownloadManifestUrl` u INI postavke
+- [x] Neuspjesan TCP status ne mijenja postojece server postavke
+- [x] ActivityLog biljezi discovery start/success/failure i settings update
+
+## Milestone 10 - Signed Catalog i Safe Install Cleanup
+
+- [x] `GameVault.ManifestSigner` generate-keys, sign i verify komande
+- [x] RSA-SHA256 potpis `downloads.json.sig`
+- [x] Desktop verificira originalne manifest byteove prije JSON parsiranja
+- [x] Catalog prikazuje signature status i odbija missing/invalid signature
+- [x] Desktop output sadrzi samo `public_key.pem`
+- [x] ZIP se brise nakon success/cancel/failure toka
+- [x] Neuspjeli extract cisti parcijalni install folder
+- [x] Manual game delete nikada ne dira lokalne fileove
+- [x] Catalog game nudi Library Only, Delete Files Too i Cancel
+- [x] Rekurzivno brisanje dopusteno je samo za child folder DefaultInstallFoldera
+
+## Milestone 11 - External REST i Network Diagnostics
+
+- [x] UDP DiscoveryServer pronalazi LAN server IP
+- [x] TCP DiscoveryServer vraca server config/status
+- [x] Network Diagnostics panel prikazuje LAN server podatke i spremljene server URL-ove
+- [x] Vanjski ipify REST servis vraca public client IP kroz `HttpClient` GET i JSON DTO
+- [x] Diagnostics greske ne ruse UI niti brisu zadnje valjane server postavke
+
 ---
 
 # Sljedece nije implementirano
 
-- [ ] Potpuna HR/ENG lokalizacija
-- [ ] TCP server/klijent
-- [ ] UDP discovery
-- [ ] RSA i digitalni potpis
-- [ ] BackupTool zaseban proces
+- [x] Potpuna HR/ENG lokalizacija
 - [ ] Plugin DLL i plugin management
 - [ ] Resource DLL
 

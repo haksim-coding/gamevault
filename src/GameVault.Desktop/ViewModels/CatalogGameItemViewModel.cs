@@ -1,13 +1,14 @@
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using GameVault.Localization;
 using GameVault.Services;
 
 namespace GameVault.ViewModels;
 
 public class CatalogGameItemViewModel : ViewModelBase
 {
-    private string _status = "Not installed";
+    private string _statusCode = "Not installed";
     private int _progressPercent;
     private long _downloadedBytes;
     private long _totalBytes;
@@ -15,11 +16,19 @@ public class CatalogGameItemViewModel : ViewModelBase
     private string _errorMessage = string.Empty;
     private bool _isIndeterminate;
     private ImageSource? _coverImage;
+    private readonly bool _isCatalogTrusted;
 
-    public CatalogGameItemViewModel(CatalogGameDto manifestItem)
+    public CatalogGameItemViewModel(CatalogGameDto manifestItem, bool isCatalogTrusted)
     {
         ManifestItem = manifestItem;
+        _isCatalogTrusted = isCatalogTrusted;
         _totalBytes = manifestItem.SizeBytes;
+        LocalizationService.Instance.LanguageChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(Status));
+            OnPropertyChanged(nameof(PrimaryButtonText));
+            OnPropertyChanged(nameof(SizeText));
+        };
     }
 
     public CatalogGameDto ManifestItem { get; }
@@ -36,27 +45,25 @@ public class CatalogGameItemViewModel : ViewModelBase
         private set => SetProperty(ref _coverImage, value);
     }
     public string SizeText => FormatBytes(ManifestItem.SizeBytes);
-    public bool IsInstalled => Status.Equals("Installed", StringComparison.OrdinalIgnoreCase);
-    public bool IsBusy => Status is "Queued" or "Downloading" or "Installing" or "Already downloading";
-    public string PrimaryButtonText => IsInstalled || IsBusy ? "In Library" : "Get";
+    public bool IsInstalled => _statusCode.Equals("Installed", StringComparison.OrdinalIgnoreCase);
+    public bool IsBusy => _statusCode is "Queued" or "Downloading" or "Installing" or "Already downloading";
+    public string PrimaryButtonText => LocalizationService.Instance.Get(IsInstalled || IsBusy ? "InLibrary" : "Get");
     public bool CanInstall => !IsInstalled && !IsBusy;
-    public bool CanUsePrimaryButton => true;
-    public bool CanCancel => Status is "Queued" or "Downloading";
+    public bool CanUsePrimaryButton => _isCatalogTrusted;
+    public bool CanCancel => _statusCode is "Queued" or "Downloading";
 
-    public string Status
+    public string Status => LocalizeStatus(_statusCode);
+
+    private void SetStatus(string value)
     {
-        get => _status;
-        private set
+        if (SetProperty(ref _statusCode, value, nameof(Status)))
         {
-            if (SetProperty(ref _status, value))
-            {
-                OnPropertyChanged(nameof(IsInstalled));
-                OnPropertyChanged(nameof(IsBusy));
-                OnPropertyChanged(nameof(PrimaryButtonText));
-                OnPropertyChanged(nameof(CanInstall));
-                OnPropertyChanged(nameof(CanUsePrimaryButton));
-                OnPropertyChanged(nameof(CanCancel));
-            }
+            OnPropertyChanged(nameof(IsInstalled));
+            OnPropertyChanged(nameof(IsBusy));
+            OnPropertyChanged(nameof(PrimaryButtonText));
+            OnPropertyChanged(nameof(CanInstall));
+            OnPropertyChanged(nameof(CanUsePrimaryButton));
+            OnPropertyChanged(nameof(CanCancel));
         }
     }
 
@@ -126,13 +133,13 @@ public class CatalogGameItemViewModel : ViewModelBase
 
     public void ApplyGameStatus(string status, int progress)
     {
-        Status = string.IsNullOrWhiteSpace(status) ? "Not installed" : status;
+        SetStatus(string.IsNullOrWhiteSpace(status) ? "Not installed" : status);
         ProgressPercent = progress;
     }
 
     public void ApplyDownloadState(DownloadState state)
     {
-        Status = state.Status;
+        SetStatus(state.Status);
         ProgressPercent = state.ProgressPercent;
         DownloadedBytes = state.DownloadedBytes;
         TotalBytes = state.TotalBytes;
@@ -167,7 +174,7 @@ public class CatalogGameItemViewModel : ViewModelBase
     {
         if (bytes <= 0)
         {
-            return "Unknown size";
+            return LocalizationService.Instance.Get("UnknownSize");
         }
 
         string[] units = ["B", "KB", "MB", "GB"];
@@ -181,6 +188,19 @@ public class CatalogGameItemViewModel : ViewModelBase
 
         return $"{value:0.#} {units[unitIndex]}";
     }
+
+    private static string LocalizeStatus(string status) => status switch
+    {
+        "Not installed" => LocalizationService.Instance.Get("NotInstalled"),
+        "Installed" => LocalizationService.Instance.Get("Installed"),
+        "Queued" => LocalizationService.Instance.Get("Queued"),
+        "Downloading" => LocalizationService.Instance.Get("Downloading"),
+        "Installing" => LocalizationService.Instance.Get("Installing"),
+        "Already downloading" => LocalizationService.Instance.Get("AlreadyDownloading"),
+        "Cancelled" => LocalizationService.Instance.Get("Cancelled"),
+        "Failed" => LocalizationService.Instance.Get("Failed"),
+        _ => status
+    };
 
     private static BitmapImage? CreateCoverImage(byte[] imageBytes)
     {

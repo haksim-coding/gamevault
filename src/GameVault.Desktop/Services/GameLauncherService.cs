@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.IO;
 using GameVault.Core.Models;
 using GameVault.Data;
+using GameVault.Localization;
 
 namespace GameVault.Services;
 
@@ -18,13 +19,13 @@ public class GameLauncherService
     {
         if (string.IsNullOrWhiteSpace(game.ExecutablePath))
         {
-            errorMessage = $"No executable file is configured for {game.Title}.";
+            errorMessage = LocalizationService.Instance.Format("NoExecutableConfigured", game.Title);
             return false;
         }
 
         if (!File.Exists(game.ExecutablePath))
         {
-            errorMessage = $"The executable file does not exist:\n{game.ExecutablePath}";
+            errorMessage = LocalizationService.Instance.Format("ExecutableMissing", game.ExecutablePath);
             return false;
         }
 
@@ -47,7 +48,7 @@ public class GameLauncherService
         }
         catch (Exception exception)
         {
-            errorMessage = $"GameVault could not launch {game.Title}.\n{exception.Message}";
+            errorMessage = LocalizationService.Instance.Format("LaunchFailed", game.Title, exception.Message);
             return false;
         }
     }

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="PersonalLibrary" xml:space="preserve"><value>OSOBNA BIBLIOTEKA</value></data>
+  <data name="Menu" xml:space="preserve"><value>IZBORNIK</value></data>
+  <data name="Home" xml:space="preserve"><value>Početna</value></data>
+  <data name="Library" xml:space="preserve"><value>Biblioteka</value></data>
+  <data name="Catalog" xml:space="preserve"><value>Katalog</value></data>
+  <data name="Profile" xml:space="preserve"><value>Profil</value></data>
+  <data name="Friends" xml:space="preserve"><value>Prijatelji</value></data>
+  <data name="Account" xml:space="preserve"><value>Račun</value></data>
+  <data name="Reports" xml:space="preserve"><value>Izvještaji</value></data>
+  <data name="Settings" xml:space="preserve"><value>Postavke</value></data>
+  <data name="OnlineAccount" xml:space="preserve"><value>ONLINE RAČUN</value></data>
+  <data name="NotLoggedIn" xml:space="preserve"><value>Niste prijavljeni</value></data>
+  <data name="OnlineFeaturesEnabled" xml:space="preserve"><value>{0} · online značajke su omogućene</value></data>
+  <data name="OpenAccountToLogIn" xml:space="preserve"><value>Prijavi se preko Računa</value></data>
+
+  <data name="AddGame" xml:space="preserve"><value>Dodaj igru</value></data>
+  <data name="EditGame" xml:space="preserve"><value>Uredi igru</value></data>
+  <data name="GameDialogDescription" xml:space="preserve"><value>Dodaj osnovne podatke i igra je spremna za biblioteku.</value></data>
+  <data name="Title" xml:space="preserve"><value>Naslov</value></data>
+  <data name="Genre" xml:space="preserve"><value>Žanr</value></data>
+  <data name="ReleaseYear" xml:space="preserve"><value>Godina izlaska</value></data>
+  <data name="Developer" xml:space="preserve"><value>Razvojni studio</value></data>
+  <data name="ExecutablePath" xml:space="preserve"><value>Putanja izvršne datoteke</value></data>
+  <data name="InstallPath" xml:space="preserve"><value>Putanja instalacije</value></data>
+  <data name="CoverImage" xml:space="preserve"><value>Naslovna slika</value></data>
+  <data name="Browse" xml:space="preserve"><value>Odaberi</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Odustani</value></data>
+  <data name="Save" xml:space="preserve"><value>Spremi</value></data>
+  <data name="Delete" xml:space="preserve"><value>Obriši</value></data>
+  <data name="Edit" xml:space="preserve"><value>Uredi</value></data>
+  <data name="Play" xml:space="preserve"><value>Pokreni</value></data>
+  <data name="Continue" xml:space="preserve"><value>Nastavi</value></data>
+  <data name="Refresh" xml:space="preserve"><value>Osvježi</value></data>
+
+  <data name="GameVaultAccount" xml:space="preserve"><value>GameVault račun</value></data>
+  <data name="AccountDescription" xml:space="preserve"><value>Prijavi se, dodaj ekipu i podijeli statistiku igranja.</value></data>
+  <data name="Login" xml:space="preserve"><value>Prijava</value></data>
+  <data name="Register" xml:space="preserve"><value>Registracija</value></data>
+  <data name="Username" xml:space="preserve"><value>Korisničko ime</value></data>
+  <data name="Password" xml:space="preserve"><value>Lozinka</value></data>
+  <data name="DisplayName" xml:space="preserve"><value>Ime za prikaz</value></data>
+  <data name="CreateAccount" xml:space="preserve"><value>Izradi račun</value></data>
+  <data name="AccountConnected" xml:space="preserve"><value>Spojen si na GameVault poslužitelj.</value></data>
+  <data name="RolePrefix" xml:space="preserve"><value>Uloga: </value></data>
+  <data name="Logout" xml:space="preserve"><value>Odjava</value></data>
+
+  <data name="ServerCatalog" xml:space="preserve"><value>Katalog poslužitelja</value></data>
+  <data name="CatalogUpper" xml:space="preserve"><value>KATALOG</value></data>
+  <data name="VersionPrefix" xml:space="preserve"><value>Verzija </value></data>
+  <data name="InLibrary" xml:space="preserve"><value>U biblioteci</value></data>
+  <data name="Get" xml:space="preserve"><value>Preuzmi</value></data>
+  <data name="UnknownSize" xml:space="preserve"><value>Nepoznata veličina</value></data>
+  <data name="LoadingServerCatalog" xml:space="preserve"><value>Učitavam nove igre...</value></data>
+  <data name="VerifyingCatalogSignature" xml:space="preserve"><value>Provjera digitalnog potpisa kataloga...</value></data>
+  <data name="CatalogSignatureVerified" xml:space="preserve"><value>Digitalni potpis je provjeren</value></data>
+  <data name="CatalogSignatureNotVerified" xml:space="preserve"><value>Digitalni potpis kataloga nije provjeren</value></data>
+  <data name="CatalogSignatureVerificationFailed" xml:space="preserve"><value>Provjera digitalnog potpisa nije uspjela</value></data>
+  <data name="CatalogSignatureMissing" xml:space="preserve"><value>Nedostaje digitalni potpis manifesta</value></data>
+  <data name="CatalogSignatureInvalid" xml:space="preserve"><value>Digitalni potpis nije valjan</value></data>
+  <data name="ServerCatalogEmpty" xml:space="preserve"><value>Katalog poslužitelja je prazan.</value></data>
+  <data name="CatalogRefreshedCount" xml:space="preserve"><value>Katalog je spreman — dostupno je {0} igara.</value></data>
+  <data name="ServerCatalogUnavailable" xml:space="preserve"><value>Katalog trenutačno nije dostupan.</value></data>
+  <data name="CatalogCannotBeTrusted" xml:space="preserve"><value>Katalog nije moguće koristiti dok se ne provjeri njegov potpis.</value></data>
+  <data name="NotInstalled" xml:space="preserve"><value>Nije instalirano</value></data>
+  <data name="Installed" xml:space="preserve"><value>Instalirano</value></data>
+  <data name="Queued" xml:space="preserve"><value>Na čekanju</value></data>
+  <data name="Downloading" xml:space="preserve"><value>Preuzimanje</value></data>
+  <data name="Installing" xml:space="preserve"><value>Instaliranje</value></data>
+  <data name="AlreadyDownloading" xml:space="preserve"><value>Preuzimanje je već u tijeku</value></data>
+  <data name="Cancelled" xml:space="preserve"><value>Otkazano</value></data>
+  <data name="Failed" xml:space="preserve"><value>Neuspjelo</value></data>
+  <data name="DownloadCancelled" xml:space="preserve"><value>Preuzimanje je otkazano.</value></data>
+  <data name="IntegrityCheckFailed" xml:space="preserve"><value>Provjera integriteta nije uspjela.</value></data>
+  <data name="ManifestExecutableMissing" xml:space="preserve"><value>Izvršna datoteka iz manifesta nije pronađena nakon raspakiravanja.</value></data>
+
+  <data name="FriendsDescription" xml:space="preserve"><value>Dodaj ekipu i usporedi statistiku igranja.</value></data>
+  <data name="LogInForFriends" xml:space="preserve"><value>Prijavi se kako bi dodao prijatelje.</value></data>
+  <data name="AddFriendByUsername" xml:space="preserve"><value>Dodaj prijatelja prema korisničkom imenu</value></data>
+  <data name="SendRequest" xml:space="preserve"><value>Pošalji zahtjev</value></data>
+  <data name="PendingRequests" xml:space="preserve"><value>Zahtjevi na čekanju</value></data>
+  <data name="AcceptRequest" xml:space="preserve"><value>Prihvati zahtjev</value></data>
+  <data name="FriendsList" xml:space="preserve"><value>Popis prijatelja</value></data>
+  <data name="GamesUpper" xml:space="preserve"><value>IGRE</value></data>
+  <data name="FriendsPlaytimeUpper" xml:space="preserve"><value>VRIJEME IGRANJA</value></data>
+  <data name="FavoriteLastPlayed" xml:space="preserve"><value>OMILJENA / POSLJEDNJE IGRANA</value></data>
+  <data name="RemoveFriend" xml:space="preserve"><value>Ukloni prijatelja</value></data>
+
+  <data name="WelcomeBack" xml:space="preserve"><value>Hej, opet si tu</value></data>
+  <data name="GamesReady" xml:space="preserve"><value>Tvoje igre su spremne. Što igramo?</value></data>
+  <data name="LocalMode" xml:space="preserve"><value>●  LOKALNA KOLEKCIJA</value></data>
+  <data name="FeaturedFromLibrary" xml:space="preserve"><value>IZDVAJAMO IZ TVOJE BIBLIOTEKE</value></data>
+  <data name="InYourLibrary" xml:space="preserve"><value>U TVOJOJ BIBLIOTECI</value></data>
+  <data name="InYourCollection" xml:space="preserve"><value>u tvojoj kolekciji</value></data>
+  <data name="PlayTimeUpper" xml:space="preserve"><value>VRIJEME IGRANJA</value></data>
+  <data name="AcrossAllGames" xml:space="preserve"><value>ukupno odigrano</value></data>
+  <data name="RecentActivity" xml:space="preserve"><value>Nedavna aktivnost</value></data>
+  <data name="RecentActivityDescription" xml:space="preserve"><value>Što se zadnje događalo u tvojoj kolekciji.</value></data>
+  <data name="LastEight" xml:space="preserve"><value>POSLJEDNJIH 8</value></data>
+  <data name="NoActivity" xml:space="preserve"><value>Još nema zabilježenih aktivnosti.</value></data>
+  <data name="ActivityWithGame" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="ActivityGameAdded" xml:space="preserve"><value>Igra je dodana</value></data>
+  <data name="ActivityGameEdited" xml:space="preserve"><value>Igra je ažurirana</value></data>
+  <data name="ActivityGameDeleted" xml:space="preserve"><value>Igra je obrisana</value></data>
+  <data name="ActivityLaunched" xml:space="preserve"><value>Igra je pokrenuta</value></data>
+  <data name="ActivityJsonExported" xml:space="preserve"><value>JSON biblioteka je izvezena</value></data>
+  <data name="ActivityJsonImported" xml:space="preserve"><value>JSON biblioteka je uvezena</value></data>
+  <data name="ActivityHistoryOpenedLabel" xml:space="preserve"><value>Povijest aktivnosti je otvorena</value></data>
+  <data name="ActivityHistoryFailed" xml:space="preserve"><value>Otvaranje povijesti aktivnosti nije uspjelo</value></data>
+  <data name="ActivityXmlExported" xml:space="preserve"><value>XML aktivnosti je izvezen</value></data>
+  <data name="ActivityArchiveCreated" xml:space="preserve"><value>Arhiva aktivnosti je izrađena</value></data>
+  <data name="ActivityArchiveOpened" xml:space="preserve"><value>Arhiva aktivnosti je otvorena</value></data>
+  <data name="ActivityArchiveFailed" xml:space="preserve"><value>Otvaranje arhive nije uspjelo</value></data>
+  <data name="ActivityBackupCreated" xml:space="preserve"><value>Sigurnosna kopija je izrađena</value></data>
+  <data name="ActivityBackupRestored" xml:space="preserve"><value>Sigurnosna kopija je vraćena</value></data>
+  <data name="ActivityBackupCheck" xml:space="preserve"><value>Provjera sigurnosne kopije je pokrenuta</value></data>
+  <data name="ActivityCatalogRefreshed" xml:space="preserve"><value>Katalog je osvježen</value></data>
+  <data name="ActivitySignatureRejected" xml:space="preserve"><value>Potpis kataloga je odbijen</value></data>
+  <data name="ActivityDeleteBlocked" xml:space="preserve"><value>Brisanje datoteka je blokirano</value></data>
+  <data name="ActivityDeleteFailed" xml:space="preserve"><value>Brisanje datoteka nije uspjelo</value></data>
+  <data name="ActivityFilesDeleted" xml:space="preserve"><value>Instalirane datoteke su obrisane</value></data>
+  <data name="ActivityDownloadCancelled" xml:space="preserve"><value>Preuzimanje je otkazano</value></data>
+  <data name="ActivityDownloadCompleted" xml:space="preserve"><value>Preuzimanje je završeno</value></data>
+  <data name="ActivityDownloadFailed" xml:space="preserve"><value>Preuzimanje nije uspjelo</value></data>
+  <data name="ActivityDownloadStarted" xml:space="preserve"><value>Preuzimanje je pokrenuto</value></data>
+  <data name="ActivityGameInstalled" xml:space="preserve"><value>Igra je instalirana s poslužitelja</value></data>
+  <data name="ActivityShaVerified" xml:space="preserve"><value>SHA256 je provjeren</value></data>
+
+  <data name="GamesShown" xml:space="preserve"><value> prikazanih igara</value></data>
+  <data name="SearchByTitle" xml:space="preserve"><value>Traži igru po naslovu</value></data>
+  <data name="SortBy" xml:space="preserve"><value>Sortiraj prema</value></data>
+  <data name="NoCover" xml:space="preserve"><value>NEMA SLIKE</value></data>
+  <data name="AllGenres" xml:space="preserve"><value>Svi žanrovi</value></data>
+  <data name="SortTitle" xml:space="preserve"><value>Naslov A-Ž</value></data>
+  <data name="SortReleaseYear" xml:space="preserve"><value>Godina izlaska</value></data>
+  <data name="SortPlayTime" xml:space="preserve"><value>Vrijeme igranja</value></data>
+  <data name="SortDateAdded" xml:space="preserve"><value>Datum dodavanja</value></data>
+  <data name="LocalLibrary" xml:space="preserve"><value>Lokalna biblioteka</value></data>
+  <data name="Local" xml:space="preserve"><value>Lokalno</value></data>
+
+  <data name="EnterPassword" xml:space="preserve"><value>Unesite lozinku</value></data>
+  <data name="PasswordDescription" xml:space="preserve"><value>Lozinka se koristi za izvođenje AES ključa za šifriranje.</value></data>
+  <data name="ProfileDescription" xml:space="preserve"><value>Tvoj profil, avatar i napredak.</value></data>
+  <data name="AvatarUpper" xml:space="preserve"><value>AVATAR</value></data>
+  <data name="UploadAvatar" xml:space="preserve"><value>Promijeni avatar</value></data>
+  <data name="FavoriteGame" xml:space="preserve"><value>Omiljena igra</value></data>
+  <data name="Bio" xml:space="preserve"><value>Biografija</value></data>
+  <data name="SaveProfile" xml:space="preserve"><value>Spremi profil</value></data>
+  <data name="Achievements" xml:space="preserve"><value>Postignuća</value></data>
+  <data name="AchievementsDescription" xml:space="preserve"><value>Sve što si dosad otključao u GameVaultu.</value></data>
+  <data name="Unlocked" xml:space="preserve"><value>OTKLJUČANO</value></data>
+  <data name="Locked" xml:space="preserve"><value>ZAKLJUČANO</value></data>
+  <data name="KeepExploring" xml:space="preserve"><value>Nastavite istraživati GameVault</value></data>
+  <data name="UnlockedOn" xml:space="preserve"><value>Otključano {0}</value></data>
+  <data name="Achievement_FIRST_GAME_ADDED_Title" xml:space="preserve"><value>Prvi unos</value></data>
+  <data name="Achievement_FIRST_GAME_ADDED_Description" xml:space="preserve"><value>Dodajte prvu igru u biblioteku.</value></data>
+  <data name="Achievement_FIRST_LAUNCH_Title" xml:space="preserve"><value>Spremni za igru</value></data>
+  <data name="Achievement_FIRST_LAUNCH_Description" xml:space="preserve"><value>Pokrenite igru iz GameVaulta.</value></data>
+  <data name="Achievement_FIVE_GAMES_ADDED_Title" xml:space="preserve"><value>Kolekcionar</value></data>
+  <data name="Achievement_FIVE_GAMES_ADDED_Description" xml:space="preserve"><value>Izgradite biblioteku s najmanje pet igara.</value></data>
+
+  <data name="ReportsDescription" xml:space="preserve"><value>Brzi pregled tvoje kolekcije i vremena igranja.</value></data>
+  <data name="GeneratePdfReport" xml:space="preserve"><value>Generiraj PDF izvještaj</value></data>
+  <data name="TotalGames" xml:space="preserve"><value>UKUPNO IGARA</value></data>
+  <data name="TotalPlayTime" xml:space="preserve"><value>UKUPNO VRIJEME IGRANJA</value></data>
+  <data name="TopGenre" xml:space="preserve"><value>NAJČEŠĆI ŽANR</value></data>
+  <data name="NewestAddedGame" xml:space="preserve"><value>NAJNOVIJA DODANA IGRA</value></data>
+  <data name="UnlockedAchievements" xml:space="preserve"><value>OTKLJUČANA POSTIGNUĆA</value></data>
+  <data name="ReportLocation" xml:space="preserve"><value>LOKACIJA IZVJEŠTAJA</value></data>
+  <data name="PdfContent" xml:space="preserve"><value>SADRŽAJ PDF-a</value></data>
+  <data name="PdfContentDescription" xml:space="preserve"><value>Izvještaj uključuje profil, ukupne podatke biblioteke, statistiku vremena igranja, potpunu tablicu igara i stanje postignuća.</value></data>
+  <data name="PersonalGameLibraryReport" xml:space="preserve"><value>Izvještaj osobne biblioteke igara</value></data>
+  <data name="GeneratedAt" xml:space="preserve"><value>Generirano: {0}</value></data>
+  <data name="Page" xml:space="preserve"><value>Stranica </value></data>
+  <data name="Of" xml:space="preserve"><value> od </value></data>
+  <data name="UserProfile" xml:space="preserve"><value>Korisnički profil</value></data>
+  <data name="FavoriteGameValue" xml:space="preserve"><value>Omiljena igra: {0}</value></data>
+  <data name="BioValue" xml:space="preserve"><value>Biografija: {0}</value></data>
+  <data name="Year" xml:space="preserve"><value>Godina</value></data>
+  <data name="Playtime" xml:space="preserve"><value>Vrijeme igranja</value></data>
+  <data name="NewestGameValue" xml:space="preserve"><value>Najnovija dodana igra: {0}</value></data>
+  <data name="NotSpecified" xml:space="preserve"><value>Nije navedeno</value></data>
+  <data name="NoGames" xml:space="preserve"><value>Nema igara</value></data>
+
+  <data name="SettingsDescription" xml:space="preserve"><value>Prilagodi GameVault sebi i odaberi gdje spremati igre.</value></data>
+  <data name="ApplicationUpper" xml:space="preserve"><value>IZGLED I JEZIK</value></data>
+  <data name="AccentColor" xml:space="preserve"><value>Boja sučelja</value></data>
+  <data name="Purple" xml:space="preserve"><value>Ljubičasta</value></data>
+  <data name="Blue" xml:space="preserve"><value>Plava</value></data>
+  <data name="Green" xml:space="preserve"><value>Zelena</value></data>
+  <data name="Orange" xml:space="preserve"><value>Narančasta</value></data>
+  <data name="Language" xml:space="preserve"><value>Jezik</value></data>
+  <data name="English" xml:space="preserve"><value>English</value></data>
+  <data name="Croatian" xml:space="preserve"><value>Hrvatski</value></data>
+  <data name="IniLocation" xml:space="preserve"><value>Lokacija INI datoteke: </value></data>
+  <data name="DownloadsUpper" xml:space="preserve"><value>PREUZIMANJA</value></data>
+  <data name="DefaultInstallFolder" xml:space="preserve"><value>Gdje spremati igre</value></data>
+  <data name="DownloadSpeedLimit" xml:space="preserve"><value>Brzina preuzimanja</value></data>
+  <data name="Unlimited" xml:space="preserve"><value>Neograničeno</value></data>
+  <data name="ServerDiscoveryUpper" xml:space="preserve"><value>GAMEVAULT POSLUŽITELJ</value></data>
+  <data name="FindGameVaultServer" xml:space="preserve"><value>Pronađi poslužitelj</value></data>
+  <data name="SaveSettings" xml:space="preserve"><value>Spremi promjene</value></data>
+  <data name="NetworkDiagnostics" xml:space="preserve"><value>PROVJERA MREŽE</value></data>
+  <data name="NetworkDiagnosticsDescription" xml:space="preserve"><value>Brzo provjeri vezu s GameVault poslužiteljem i internetom.</value></data>
+  <data name="DiscoveryStatus" xml:space="preserve"><value>Stanje pronalaženja</value></data>
+  <data name="LanServerIp" xml:space="preserve"><value>IP adresa LAN poslužitelja</value></data>
+  <data name="ServerName" xml:space="preserve"><value>Naziv poslužitelja</value></data>
+  <data name="ServerVersion" xml:space="preserve"><value>Verzija poslužitelja</value></data>
+  <data name="ServerStatus" xml:space="preserve"><value>Stanje poslužitelja</value></data>
+  <data name="ApiBaseUrl" xml:space="preserve"><value>Osnovni URL API-ja</value></data>
+  <data name="FilesBaseUrl" xml:space="preserve"><value>Osnovni URL datoteka</value></data>
+  <data name="ManifestUrl" xml:space="preserve"><value>URL manifesta</value></data>
+  <data name="PublicClientIp" xml:space="preserve"><value>Javna IP adresa klijenta</value></data>
+  <data name="LastChecked" xml:space="preserve"><value>Posljednja provjera</value></data>
+  <data name="RunNetworkDiagnostics" xml:space="preserve"><value>Provjeri mrežu</value></data>
+
+  <data name="BackupTransfer" xml:space="preserve"><value>Kopije i prijenos</value></data>
+  <data name="BackupTransferDescription" xml:space="preserve"><value>Preseli kolekciju na drugi uređaj ili spremi sigurnu kopiju.</value></data>
+  <data name="GameLibrary" xml:space="preserve"><value>Biblioteka igara</value></data>
+  <data name="GameLibraryTransferDescription" xml:space="preserve"><value>Prebaci svoju biblioteku na drugi uređaj.</value></data>
+  <data name="ExportLibrary" xml:space="preserve"><value>Izvezi biblioteku</value></data>
+  <data name="ImportLibrary" xml:space="preserve"><value>Uvezi biblioteku</value></data>
+  <data name="FormatJson" xml:space="preserve"><value>Format: JSON</value></data>
+  <data name="SecureBackup" xml:space="preserve"><value>Sigurnosna kopija</value></data>
+  <data name="SecureBackupDescription" xml:space="preserve"><value>Spremi kolekciju u šifriranu kopiju zaštićenu lozinkom.</value></data>
+  <data name="CreateSecureBackup" xml:space="preserve"><value>Izradi sigurnosnu kopiju</value></data>
+  <data name="CheckBackupFile" xml:space="preserve"><value>Provjeri sigurnosnu kopiju</value></data>
+  <data name="RestoreSecureBackup" xml:space="preserve"><value>Vrati sigurnosnu kopiju</value></data>
+  <data name="FormatGvb" xml:space="preserve"><value>Format: .gvb</value></data>
+  <data name="ActivityHistory" xml:space="preserve"><value>Povijest aktivnosti</value></data>
+  <data name="ActivityHistoryDescription" xml:space="preserve"><value>Spremi pregled svega što si radio u GameVaultu.</value></data>
+  <data name="ExportActivityHistory" xml:space="preserve"><value>Izvezi povijest aktivnosti</value></data>
+  <data name="OpenActivityHistory" xml:space="preserve"><value>Otvori povijest aktivnosti</value></data>
+  <data name="FormatXml" xml:space="preserve"><value>Format: XML</value></data>
+  <data name="ActivityArchive" xml:space="preserve"><value>Arhiva aktivnosti</value></data>
+  <data name="ActivityArchiveDescription" xml:space="preserve"><value>Spakiraj povijest aktivnosti u malu arhivu.</value></data>
+  <data name="CreateActivityArchive" xml:space="preserve"><value>Izradi arhivu aktivnosti</value></data>
+  <data name="OpenActivityArchive" xml:space="preserve"><value>Otvori arhivu aktivnosti</value></data>
+  <data name="FormatActivityArchive" xml:space="preserve"><value>Format: GameVault arhiva aktivnosti (.gvactivity)</value></data>
+  <data name="ArchiveSummaryTooltip" xml:space="preserve"><value>Čita sažetak arhive bez uvoza.</value></data>
+
+  <data name="SettingsSavedTo" xml:space="preserve"><value>Postavke su spremljene u {0}</value></data>
+  <data name="Searching" xml:space="preserve"><value>Traženje...</value></data>
+  <data name="SearchingForServer" xml:space="preserve"><value>Traženje GameVault poslužitelja...</value></data>
+  <data name="ServerUnavailable" xml:space="preserve"><value>Poslužitelj nije dostupan</value></data>
+  <data name="InvalidDiscoveryResponse" xml:space="preserve"><value>Odgovor pronalaženja nije valjan.</value></data>
+  <data name="NetworkSearchError" xml:space="preserve"><value>Mrežna pogreška pri traženju poslužitelja.</value></data>
+  <data name="NetworkStatusError" xml:space="preserve"><value>Mrežna pogreška pri čitanju stanja poslužitelja.</value></data>
+  <data name="ServerFoundStatusUnavailable" xml:space="preserve"><value>Poslužitelj je pronađen; stanje nije dostupno</value></data>
+  <data name="ServerStatusUnavailable" xml:space="preserve"><value>Stanje poslužitelja nije dostupno</value></data>
+  <data name="ServerFound" xml:space="preserve"><value>Poslužitelj je pronađen: {0}</value></data>
+  <data name="ServerSettingsUpdated" xml:space="preserve"><value>Postavke poslužitelja su ažurirane</value></data>
+  <data name="GameVaultServerUnavailable" xml:space="preserve"><value>GameVault poslužitelj nije dostupan.</value></data>
+  <data name="Checking" xml:space="preserve"><value>Provjera...</value></data>
+  <data name="RunningDiagnostics" xml:space="preserve"><value>Pokretanje mrežne dijagnostike...</value></data>
+  <data name="NotChecked" xml:space="preserve"><value>Nije provjereno</value></data>
+  <data name="NotAvailable" xml:space="preserve"><value>Nije dostupno</value></data>
+  <data name="Never" xml:space="preserve"><value>Nikad</value></data>
+  <data name="Connected" xml:space="preserve"><value>Povezano</value></data>
+  <data name="DiagnosticsCompleted" xml:space="preserve"><value>Dijagnostika je završena.</value></data>
+  <data name="DiagnosticsWarnings" xml:space="preserve"><value>Dijagnostika je završena s upozorenjima.</value></data>
+  <data name="ExternalRestFailed" xml:space="preserve"><value>Provjera vanjskog REST servisa nije uspjela.</value></data>
+  <data name="DiagnosticsBothFailed" xml:space="preserve"><value>GameVault poslužitelj nije dostupan. Provjera vanjskog REST servisa nije uspjela. Dijagnostika je završena s upozorenjima.</value></data>
+  <data name="DiagnosticsExternalFailed" xml:space="preserve"><value>Provjera vanjskog REST servisa nije uspjela. Dijagnostika je završena s upozorenjima.</value></data>
+  <data name="DiagnosticsServerFailed" xml:space="preserve"><value>GameVault poslužitelj nije dostupan. Dijagnostika je završena s upozorenjima.</value></data>
+
+  <data name="Validation" xml:space="preserve"><value>Provjera unosa</value></data>
+  <data name="TitleRequired" xml:space="preserve"><value>Naslov je obavezan.</value></data>
+  <data name="ValidReleaseYearRequired" xml:space="preserve"><value>Unesite valjanu godinu izlaska.</value></data>
+  <data name="SelectGameExecutable" xml:space="preserve"><value>Odaberite izvršnu datoteku igre</value></data>
+  <data name="SelectInstallFolder" xml:space="preserve"><value>Odaberite instalacijsku mapu igre</value></data>
+  <data name="SelectCoverImage" xml:space="preserve"><value>Odaberite naslovnu sliku</value></data>
+  <data name="SelectAvatarImage" xml:space="preserve"><value>Odaberite sliku avatara</value></data>
+  <data name="ExecutableFilesFilter" xml:space="preserve"><value>Izvršne datoteke (*.exe)|*.exe|Sve datoteke (*.*)|*.*</value></data>
+  <data name="ImageFilesFilter" xml:space="preserve"><value>Slikovne datoteke (*.png;*.jpg;*.jpeg;*.webp)|*.png;*.jpg;*.jpeg;*.webp|Sve datoteke (*.*)|*.*</value></data>
+  <data name="AvatarImageFilesFilter" xml:space="preserve"><value>Slikovne datoteke (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|Sve datoteke (*.*)|*.*</value></data>
+  <data name="PasswordRequired" xml:space="preserve"><value>Lozinka ne smije biti prazna.</value></data>
+  <data name="DeleteGame" xml:space="preserve"><value>Obriši igru</value></data>
+  <data name="ConfirmDeleteGame" xml:space="preserve"><value>Obrisati "{0}" iz biblioteke?</value></data>
+  <data name="ConfirmCatalogDelete" xml:space="preserve"><value>GameVault je instalirao igru "{0}".\n\nDa: obriši zapis iz biblioteke i instalirane datoteke.\nNe: ukloni samo zapis iz biblioteke.\nOdustani: zadrži igru.</value></data>
+  <data name="UnsafeDeletePrompt" xml:space="preserve"><value>Datoteke igre nisu obrisane jer je putanja instalacije izvan GameVault instalacijske mape ili je zaštićena.\n\n{0}\n\nUkloniti samo zapis iz biblioteke?</value></data>
+  <data name="FilesNotDeleted" xml:space="preserve"><value>Datoteke nisu obrisane</value></data>
+  <data name="UnableDeleteFiles" xml:space="preserve"><value>Nije moguće obrisati datoteke igre</value></data>
+  <data name="UnableLaunchGame" xml:space="preserve"><value>Nije moguće pokrenuti igru</value></data>
+  <data name="NoExecutableConfigured" xml:space="preserve"><value>Izvršna datoteka nije postavljena za igru {0}.</value></data>
+  <data name="ExecutableMissing" xml:space="preserve"><value>Izvršna datoteka ne postoji:\n{0}</value></data>
+  <data name="LaunchFailed" xml:space="preserve"><value>GameVault nije mogao pokrenuti igru {0}.\n{1}</value></data>
+  <data name="InstalledFilesDeleteFailed" xml:space="preserve"><value>Instalirane datoteke nije bilo moguće obrisati. Zapis u biblioteci je zadržan.\n\n{0}</value></data>
+  <data name="InstallPathEmpty" xml:space="preserve"><value>Putanja instalacije je prazna.</value></data>
+  <data name="InstallFolderMissing" xml:space="preserve"><value>Instalacijska mapa ne postoji.</value></data>
+  <data name="InstallRootProtected" xml:space="preserve"><value>Korijensku GameVault instalacijsku mapu nije moguće obrisati.</value></data>
+  <data name="ProtectedRoot" xml:space="preserve"><value>Zaštićenu korijensku mapu nije moguće obrisati.</value></data>
+  <data name="InstallPathOutside" xml:space="preserve"><value>Putanja instalacije je izvan GameVault instalacijske mape.</value></data>
+  <data name="InvalidInstallPath" xml:space="preserve"><value>Putanja instalacije nije valjana.</value></data>
+
+  <data name="EnterUsernamePassword" xml:space="preserve"><value>Unesite korisničko ime i lozinku.</value></data>
+  <data name="LoginSuccessful" xml:space="preserve"><value>Prijava je uspješna.</value></data>
+  <data name="EnterRegistrationFields" xml:space="preserve"><value>Unesite korisničko ime, lozinku i ime za prikaz.</value></data>
+  <data name="RegistrationSuccessful" xml:space="preserve"><value>Registracija je uspješna. Sada ste prijavljeni.</value></data>
+  <data name="Connecting" xml:space="preserve"><value>Povezivanje...</value></data>
+  <data name="LoginFailed" xml:space="preserve"><value>Prijavu nije bilo moguće dovršiti.</value></data>
+  <data name="LoggedOut" xml:space="preserve"><value>Odjavljeni ste.</value></data>
+  <data name="Refreshing" xml:space="preserve"><value>Osvježavanje...</value></data>
+  <data name="FriendsUpdated" xml:space="preserve"><value>Popis prijatelja je ažuriran.</value></data>
+  <data name="FriendsLoadFailed" xml:space="preserve"><value>Prijatelje nije bilo moguće učitati.</value></data>
+  <data name="EnterUsername" xml:space="preserve"><value>Unesite korisničko ime.</value></data>
+  <data name="FriendRequestSent" xml:space="preserve"><value>Zahtjev za prijateljstvo je poslan.</value></data>
+  <data name="FriendAccepted" xml:space="preserve"><value>Prihvaćen korisnik {0}.</value></data>
+  <data name="FriendRemoved" xml:space="preserve"><value>Uklonjen korisnik {0}.</value></data>
+  <data name="OperationCouldNotComplete" xml:space="preserve"><value>Radnju nije bilo moguće dovršiti.</value></data>
+  <data name="ApiUsernameTaken" xml:space="preserve"><value>Korisničko ime je već zauzeto.</value></data>
+  <data name="ApiInvalidCredentials" xml:space="preserve"><value>Korisničko ime ili lozinka nisu valjani.</value></data>
+  <data name="ApiUserNotFound" xml:space="preserve"><value>Korisnik nije pronađen.</value></data>
+  <data name="ApiCannotFriendSelf" xml:space="preserve"><value>Ne možete poslati zahtjev za prijateljstvo samome sebi.</value></data>
+  <data name="ApiFriendshipExists" xml:space="preserve"><value>Prijateljstvo ili zahtjev između ovih korisnika već postoji.</value></data>
+  <data name="ApiPendingRequestNotFound" xml:space="preserve"><value>Zahtjev za prijateljstvo na čekanju nije pronađen.</value></data>
+  <data name="ApiFriendshipNotFound" xml:space="preserve"><value>Prijateljstvo nije pronađeno.</value></data>
+  <data name="ProfileFieldsRequired" xml:space="preserve"><value>Korisničko ime i ime za prikaz su obavezni.</value></data>
+  <data name="ProfileSaved" xml:space="preserve"><value>Profil je spremljen.</value></data>
+  <data name="AvatarSelected" xml:space="preserve"><value>Avatar je odabran. Kliknite Spremi profil za pohranu u SQLite.</value></data>
+  <data name="AvatarLoadFailed" xml:space="preserve"><value>Avatar nije moguće učitati: {0}</value></data>
+  <data name="ReportSavedTo" xml:space="preserve"><value>Izvještaj je spremljen u: {0}</value></data>
+  <data name="ReportGenerated" xml:space="preserve"><value>PDF izvještaj je uspješno generiran:\n{0}</value></data>
+  <data name="GameVaultReport" xml:space="preserve"><value>GameVault izvještaj</value></data>
+  <data name="ReportGenerationFailed" xml:space="preserve"><value>Izvještaj nije moguće generirati: {0}</value></data>
+  <data name="PdfReportError" xml:space="preserve"><value>Pogreška PDF izvještaja</value></data>
+  <data name="OperationFailed" xml:space="preserve"><value>Radnja nije uspjela: {0}</value></data>
+  <data name="UnexpectedError" xml:space="preserve"><value>Neočekivana pogreška</value></data>
+  <data name="GameVaultError" xml:space="preserve"><value>GameVault pogreška</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Nedostupno</value></data>
+  <data name="JsonExportFilter" xml:space="preserve"><value>GameVault JSON izvoz (*.json)|*.json</value></data>
+  <data name="ActivityXmlFilter" xml:space="preserve"><value>GameVault XML aktivnosti (*.xml)|*.xml</value></data>
+  <data name="ActivityHistoryFilter" xml:space="preserve"><value>GameVault povijest aktivnosti (*.xml)|*.xml</value></data>
+  <data name="ActivityArchiveFilter" xml:space="preserve"><value>GameVault arhiva aktivnosti (*.gvactivity)|*.gvactivity</value></data>
+  <data name="SecureBackupFilter" xml:space="preserve"><value>GameVault sigurnosna kopija (*.gvb)|*.gvb</value></data>
+  <data name="LibraryExportCreated" xml:space="preserve"><value>Izvoz biblioteke je uspješno izrađen:\n{0}</value></data>
+  <data name="ActivityHistoryCreated" xml:space="preserve"><value>Datoteka povijesti aktivnosti je uspješno izrađena:\n{0}</value></data>
+  <data name="ActivityHistoryOpenFailed" xml:space="preserve"><value>Ovu datoteku povijesti aktivnosti nije moguće otvoriti.</value></data>
+  <data name="ActivityArchiveCreatedPath" xml:space="preserve"><value>Arhiva aktivnosti je uspješno izrađena:\n{0}</value></data>
+  <data name="SecureBackupCreatedDetails" xml:space="preserve"><value>Sigurnosna kopija je uspješno izrađena:\n{0}\n\nKopija je šifrirana AES-om i sadrži internu SHA256 provjeru integriteta.</value></data>
+  <data name="BackupCheckTitle" xml:space="preserve"><value>GameVault provjera sigurnosne kopije</value></data>
+  <data name="SecureBackupRestoredCount" xml:space="preserve"><value>Sigurnosna kopija je vraćena. Dodano je novih igara: {0}; duplikati su preskočeni.</value></data>
+  <data name="ValidBackup" xml:space="preserve"><value>Sigurnosna kopija je valjana</value></data>
+  <data name="FileNotFound" xml:space="preserve"><value>Datoteka nije pronađena</value></data>
+  <data name="InvalidBackupFormat" xml:space="preserve"><value>Format sigurnosne kopije nije valjan</value></data>
+  <data name="InvalidFile" xml:space="preserve"><value>Odabrana datoteka nije valjana.</value></data>
+  <data name="StatsSyncAutomatic" xml:space="preserve"><value>Statistika se sinkronizira automatski</value></data>
+  <data name="LastSynced" xml:space="preserve"><value>Posljednja sinkronizacija: {0}</value></data>
+  <data name="SyncUnavailable" xml:space="preserve"><value>Sinkronizacija nije dostupna</value></data>
+  <data name="WrongPasswordIntegrity" xml:space="preserve"><value>Pogrešna lozinka ili provjera integriteta nije uspjela</value></data>
+  <data name="BackupToolNotFound" xml:space="preserve"><value>Alat za provjeru sigurnosne kopije nije pronađen.</value></data>
+  <data name="BackupToolInvalidArguments" xml:space="preserve"><value>Alat za provjeru sigurnosne kopije primio je nevaljane argumente.</value></data>
+  <data name="UnexpectedErrorDetails" xml:space="preserve"><value>Neočekivana pogreška: {0}</value></data>
+  <data name="ImportComplete" xml:space="preserve"><value>Uvoz je završen. Uvezeno je novih igara: {0}; duplikati su preskočeni.</value></data>
+  <data name="NoActivityRecords" xml:space="preserve"><value>Nema zapisa aktivnosti</value></data>
+  <data name="ArchiveSummary" xml:space="preserve"><value>Sažetak arhive aktivnosti:</value></data>
+  <data name="HistorySummary" xml:space="preserve"><value>Sažetak povijesti aktivnosti:</value></data>
+  <data name="FormatVersion" xml:space="preserve"><value>Verzija formata: {0}</value></data>
+  <data name="ExportedAt" xml:space="preserve"><value>Izvezeno: {0}</value></data>
+  <data name="RecordsCount" xml:space="preserve"><value>Broj zapisa: {0}</value></data>
+  <data name="FirstActivity" xml:space="preserve"><value>Prva aktivnost: {0}</value></data>
+  <data name="LastActivity" xml:space="preserve"><value>Posljednja aktivnost: {0}</value></data>
+  <data name="Preview" xml:space="preserve"><value>Pregled:</value></data>
+</root>

@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Input;
+using GameVault.Localization;
 using GameVault.Services;
 
 namespace GameVault.ViewModels;
@@ -66,13 +67,13 @@ public class AuthViewModel : ViewModelBase
     {
         if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
         {
-            StatusMessage = "Enter username and password.";
+            StatusMessage = LocalizationService.Instance.Get("EnterUsernamePassword");
             return;
         }
 
         await RunAuthAsync(
             () => _apiClient.LoginAsync(Username, Password),
-            "Login successful.");
+            LocalizationService.Instance.Get("LoginSuccessful"));
     }
 
     private async Task RegisterAsync()
@@ -81,13 +82,13 @@ public class AuthViewModel : ViewModelBase
             string.IsNullOrWhiteSpace(Password) ||
             string.IsNullOrWhiteSpace(DisplayName))
         {
-            StatusMessage = "Enter username, password and display name.";
+            StatusMessage = LocalizationService.Instance.Get("EnterRegistrationFields");
             return;
         }
 
         await RunAuthAsync(
             () => _apiClient.RegisterAsync(Username, Password, DisplayName),
-            "Registration successful. You are now logged in.");
+            LocalizationService.Instance.Get("RegistrationSuccessful"));
     }
 
     private async Task RunAuthAsync(
@@ -96,7 +97,7 @@ public class AuthViewModel : ViewModelBase
     {
         try
         {
-            StatusMessage = "Connecting...";
+            StatusMessage = LocalizationService.Instance.Get("Connecting");
             var result = await action();
             _session.Start(result.Token, result.Username, result.Role);
             Password = string.Empty;
@@ -105,11 +106,11 @@ public class AuthViewModel : ViewModelBase
         }
         catch (ApiException exception)
         {
-            StatusMessage = exception.Message;
+            StatusMessage = ApiErrorLocalizer.Get(exception.Message);
         }
         catch (Exception)
         {
-            StatusMessage = "Login could not be completed.";
+            StatusMessage = LocalizationService.Instance.Get("LoginFailed");
         }
     }
 
@@ -117,7 +118,7 @@ public class AuthViewModel : ViewModelBase
     {
         _session.Clear();
         Password = string.Empty;
-        StatusMessage = "Logged out.";
+        StatusMessage = LocalizationService.Instance.Get("LoggedOut");
     }
 
     private void RefreshSessionProperties()

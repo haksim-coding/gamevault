@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
+using GameVault.Localization;
 using GameVault.Services;
 
 namespace GameVault.ViewModels;
@@ -74,14 +75,14 @@ public class FriendsViewModel : ViewModelBase
 
         try
         {
-            StatusMessage = "Refreshing...";
+            StatusMessage = LocalizationService.Instance.Get("Refreshing");
             var requestsTask = _apiClient.GetFriendRequestsAsync();
             var friendsTask = _apiClient.GetFriendsAsync();
             await Task.WhenAll(requestsTask, friendsTask);
 
             ReplaceItems(PendingRequests, await requestsTask);
             ReplaceItems(Friends, await friendsTask);
-            StatusMessage = "Friends updated.";
+            StatusMessage = LocalizationService.Instance.Get("FriendsUpdated");
         }
         catch (ApiException exception)
         {
@@ -89,7 +90,7 @@ public class FriendsViewModel : ViewModelBase
         }
         catch (Exception)
         {
-            StatusMessage = "Friends could not be loaded.";
+            StatusMessage = LocalizationService.Instance.Get("FriendsLoadFailed");
         }
     }
 
@@ -97,13 +98,13 @@ public class FriendsViewModel : ViewModelBase
     {
         if (string.IsNullOrWhiteSpace(FriendUsername))
         {
-            StatusMessage = "Enter a username.";
+            StatusMessage = LocalizationService.Instance.Get("EnterUsername");
             return;
         }
 
         await RunActionAsync(
             () => _apiClient.SendFriendRequestAsync(FriendUsername),
-            "Friend request sent.");
+            LocalizationService.Instance.Get("FriendRequestSent"));
         FriendUsername = string.Empty;
     }
 
@@ -113,7 +114,7 @@ public class FriendsViewModel : ViewModelBase
 
         await RunActionAsync(
             () => _apiClient.AcceptFriendRequestAsync(request.RequestId),
-            $"Accepted {request.Username}.");
+            LocalizationService.Instance.Format("FriendAccepted", request.Username));
         await RefreshAsync();
     }
 
@@ -123,7 +124,7 @@ public class FriendsViewModel : ViewModelBase
 
         await RunActionAsync(
             () => _apiClient.RemoveFriendAsync(friend.FriendshipId),
-            $"Removed {friend.Username}.");
+            LocalizationService.Instance.Format("FriendRemoved", friend.Username));
         await RefreshAsync();
     }
 
@@ -140,13 +141,13 @@ public class FriendsViewModel : ViewModelBase
         }
         catch (Exception)
         {
-            StatusMessage = "The operation could not be completed.";
+            StatusMessage = LocalizationService.Instance.Get("OperationCouldNotComplete");
         }
     }
 
     private void HandleApiError(ApiException exception)
     {
-        StatusMessage = exception.Message;
+        StatusMessage = ApiErrorLocalizer.Get(exception.Message);
         if (exception.StatusCode == HttpStatusCode.Unauthorized)
         {
             SessionChanged();

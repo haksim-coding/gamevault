@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using GameVault.Data;
+using GameVault.Localization;
 
 namespace GameVault.Services;
 
@@ -11,7 +12,8 @@ public class PublicStatsSyncService : INotifyPropertyChanged
     private readonly GameRepository _gameRepository;
     private readonly ActivityLogRepository _activityLogRepository;
     private readonly SemaphoreSlim _syncLock = new(1, 1);
-    private string _statusText = "Stats sync automatically";
+    private string _statusKey = "StatsSyncAutomatic";
+    private string? _statusArgument;
 
     public PublicStatsSyncService(
         GameVaultApiClient apiClient,
@@ -23,24 +25,18 @@ public class PublicStatsSyncService : INotifyPropertyChanged
         _session = session;
         _gameRepository = gameRepository;
         _activityLogRepository = activityLogRepository;
+        LocalizationService.Instance.LanguageChanged += (_, _) => OnPropertyChanged(nameof(StatusText));
     }
 
-    public string StatusText
-    {
-        get => _statusText;
-        private set
-        {
-            if (_statusText == value) return;
-            _statusText = value;
-            OnPropertyChanged();
-        }
-    }
+    public string StatusText => _statusArgument is null
+        ? LocalizationService.Instance.Get(_statusKey)
+        : LocalizationService.Instance.Format(_statusKey, _statusArgument);
 
     public async Task TrySyncAsync()
     {
         if (!_session.IsLoggedIn)
         {
-            StatusText = "Stats sync automatically";
+            SetStatus("StatsSyncAutomatic");
             return;
         }
 
@@ -75,11 +71,11 @@ public class PublicStatsSyncService : INotifyPropertyChanged
                 favoriteGenre,
                 lastPlayedGame));
 
-            StatusText = $"Last synced: {DateTime.Now:HH:mm}";
+            SetStatus("LastSynced", DateTime.Now.ToString("HH:mm"));
         }
         catch (Exception)
         {
-            StatusText = "Sync unavailable";
+            SetStatus("SyncUnavailable");
         }
         finally
         {
@@ -88,6 +84,13 @@ public class PublicStatsSyncService : INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void SetStatus(string key, string? argument = null)
+    {
+        _statusKey = key;
+        _statusArgument = argument;
+        OnPropertyChanged(nameof(StatusText));
+    }
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -1,6 +1,7 @@
 <Window x:Class="GameVault.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:GameVault.Localization"
         Title="GameVault"
         Width="1180"
         Height="720"
@@ -68,69 +69,69 @@
                     </Border>
                     <StackPanel Margin="11,0,0,0" VerticalAlignment="Center">
                         <TextBlock Text="GAMEVAULT" FontSize="16" FontWeight="Bold" />
-                        <TextBlock Text="PERSONAL LIBRARY"
+                        <TextBlock Text="{loc:Loc PersonalLibrary}"
                                    Foreground="{StaticResource MutedTextBrush}" FontSize="9" />
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2">
-                    <TextBlock Text="MENU" Margin="10,0,0,10"
+                    <TextBlock Text="{loc:Loc Menu}" Margin="10,0,0,10"
                                Foreground="{StaticResource MutedTextBrush}"
                                FontSize="10" FontWeight="SemiBold" />
                     <Button Command="{Binding ShowHomeCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="⌂" FontSize="20" Width="32" />
-                            <TextBlock Text="Home" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Home}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowLibraryCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="▦" FontSize="19" Width="32" />
-                            <TextBlock Text="Library" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Library}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowCatalogCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="C" FontSize="16" FontWeight="Bold" Width="32" />
-                            <TextBlock Text="Catalog" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Catalog}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowProfileCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="●" FontSize="16" Width="32" />
-                            <TextBlock Text="Profile" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Profile}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowFriendsCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="+" FontSize="18" FontWeight="Bold" Width="32" />
-                            <TextBlock Text="Friends" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Friends}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowAuthCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="@" FontSize="16" FontWeight="Bold" Width="32" />
-                            <TextBlock Text="Account" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Account}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowReportsCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="▤" FontSize="18" Width="32" />
-                            <TextBlock Text="Reports" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Reports}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowSettingsCommand}"
                             Style="{StaticResource NavigationButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="S" FontSize="16" FontWeight="Bold" Width="32" />
-                            <TextBlock Text="Settings" FontSize="14" VerticalAlignment="Center" />
+                            <TextBlock Text="{loc:Loc Settings}" FontSize="14" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -138,7 +139,7 @@
                 <Border Grid.Row="3" Padding="13"
                         Background="{StaticResource SurfaceLightBrush}" CornerRadius="10">
                     <StackPanel>
-                        <TextBlock Text="ONLINE ACCOUNT" Foreground="{DynamicResource PrimaryBrush}"
+                        <TextBlock Text="{loc:Loc OnlineAccount}" Foreground="{DynamicResource PrimaryBrush}"
                                    FontSize="10" FontWeight="Bold" />
                         <TextBlock Text="{Binding AccountName}" Margin="0,4,0,0" FontWeight="SemiBold" />
                         <TextBlock Text="{Binding AccountStatus}" Margin="0,2,0,0"

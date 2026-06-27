@@ -1,4 +1,5 @@
 using System.Windows;
+using GameVault.Localization;
 
 namespace GameVault.Views;
 
@@ -19,8 +20,8 @@ public partial class PasswordWindow : Window
         if (string.IsNullOrWhiteSpace(PasswordInput.Password))
         {
             MessageBox.Show(
-                "Password cannot be empty.",
-                "Password",
+                LocalizationService.Instance.Get("PasswordRequired"),
+                LocalizationService.Instance.Get("Password"),
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
             return;

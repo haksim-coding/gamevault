@@ -7,6 +7,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <converters:PlayTimeConverter x:Key="PlayTimeConverter" />
+        <converters:LocalizedValueConverter x:Key="LocalizedValueConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">

@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameVault.Core", "src\GameV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameVault.Api", "src\GameVault.Api\GameVault.Api.csproj", "{C49E94E6-B4C7-4A92-902B-CFD70E6A742E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameVault.DiscoveryServer", "src\GameVault.DiscoveryServer\GameVault.DiscoveryServer.csproj", "{21883E2C-EC97-4F38-A8F7-B749B25632ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameVault.BackupTool", "src\GameVault.BackupTool\GameVault.BackupTool.csproj", "{640F2A5A-D3F5-4E15-9264-E64A453CC6E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameVault.ManifestSigner", "src\GameVault.ManifestSigner\GameVault.ManifestSigner.csproj", "{C023E942-5CE6-4AF4-842A-5FBF4E094C40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{C49E94E6-B4C7-4A92-902B-CFD70E6A742E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C49E94E6-B4C7-4A92-902B-CFD70E6A742E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C49E94E6-B4C7-4A92-902B-CFD70E6A742E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21883E2C-EC97-4F38-A8F7-B749B25632ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21883E2C-EC97-4F38-A8F7-B749B25632ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21883E2C-EC97-4F38-A8F7-B749B25632ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21883E2C-EC97-4F38-A8F7-B749B25632ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640F2A5A-D3F5-4E15-9264-E64A453CC6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640F2A5A-D3F5-4E15-9264-E64A453CC6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640F2A5A-D3F5-4E15-9264-E64A453CC6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640F2A5A-D3F5-4E15-9264-E64A453CC6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C023E942-5CE6-4AF4-842A-5FBF4E094C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C023E942-5CE6-4AF4-842A-5FBF4E094C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C023E942-5CE6-4AF4-842A-5FBF4E094C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C023E942-5CE6-4AF4-842A-5FBF4E094C40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

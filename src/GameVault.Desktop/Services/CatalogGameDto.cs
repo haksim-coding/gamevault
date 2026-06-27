@@ -44,13 +44,19 @@ public class CatalogGameDto
     [JsonPropertyName("executableRelativePath")]
     public string ExecutableRelativePath { get; set; } = string.Empty;
 
+    [JsonIgnore]
+    public string ApiBaseUrl { get; set; } = AppSettings.DefaultApiBaseUrl;
+
+    [JsonIgnore]
+    public string FilesBaseUrl { get; set; } = AppSettings.DefaultFilesBaseUrl;
+
     public string ResolvedCoverUrl
     {
         get
         {
             if (!string.IsNullOrWhiteSpace(Id))
             {
-                return $"{AppSettings.CoverBaseUrl}/{Uri.EscapeDataString(Id)}.png";
+                return $"{FilesBaseUrl.TrimEnd('/')}/covers/{Uri.EscapeDataString(Id)}.png";
             }
 
             if (Uri.TryCreate(CoverUrl, UriKind.Absolute, out _))
@@ -61,7 +67,7 @@ public class CatalogGameDto
             if (!string.IsNullOrWhiteSpace(CoverUrl))
             {
                 var coverPath = CoverUrl.TrimStart('/');
-                return $"{AppSettings.ApiBaseUrl.TrimEnd('/')}/{coverPath}";
+                return $"{ApiBaseUrl.TrimEnd('/')}/{coverPath}";
             }
 
             return string.Empty;

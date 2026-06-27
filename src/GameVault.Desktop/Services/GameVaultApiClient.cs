@@ -175,7 +175,7 @@ public class GameVaultApiClient
         if (!Uri.TryCreate(value, UriKind.Absolute, out var uri) ||
             (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
         {
-            throw new ArgumentException("API Base URL must be a valid HTTP or HTTPS URL.");
+            return AppSettings.DefaultApiBaseUrl;
         }
 
         return value;

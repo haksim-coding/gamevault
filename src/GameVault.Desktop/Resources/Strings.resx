@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="PersonalLibrary" xml:space="preserve"><value>PERSONAL LIBRARY</value></data>
+  <data name="Menu" xml:space="preserve"><value>MENU</value></data>
+  <data name="Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Library" xml:space="preserve"><value>Library</value></data>
+  <data name="Catalog" xml:space="preserve"><value>Catalog</value></data>
+  <data name="Profile" xml:space="preserve"><value>Profile</value></data>
+  <data name="Friends" xml:space="preserve"><value>Friends</value></data>
+  <data name="Account" xml:space="preserve"><value>Account</value></data>
+  <data name="Reports" xml:space="preserve"><value>Reports</value></data>
+  <data name="Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="OnlineAccount" xml:space="preserve"><value>ONLINE ACCOUNT</value></data>
+  <data name="NotLoggedIn" xml:space="preserve"><value>Not logged in</value></data>
+  <data name="OnlineFeaturesEnabled" xml:space="preserve"><value>{0} · online features enabled</value></data>
+  <data name="OpenAccountToLogIn" xml:space="preserve"><value>Open Account to log in</value></data>
+
+  <data name="AddGame" xml:space="preserve"><value>Add Game</value></data>
+  <data name="EditGame" xml:space="preserve"><value>Edit Game</value></data>
+  <data name="GameDialogDescription" xml:space="preserve"><value>Add the basics and your game is ready for the library.</value></data>
+  <data name="Title" xml:space="preserve"><value>Title</value></data>
+  <data name="Genre" xml:space="preserve"><value>Genre</value></data>
+  <data name="ReleaseYear" xml:space="preserve"><value>Release year</value></data>
+  <data name="Developer" xml:space="preserve"><value>Developer</value></data>
+  <data name="ExecutablePath" xml:space="preserve"><value>Executable path</value></data>
+  <data name="InstallPath" xml:space="preserve"><value>Install path</value></data>
+  <data name="CoverImage" xml:space="preserve"><value>Cover image</value></data>
+  <data name="Browse" xml:space="preserve"><value>Browse</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Play" xml:space="preserve"><value>Play</value></data>
+  <data name="Continue" xml:space="preserve"><value>Continue</value></data>
+  <data name="Refresh" xml:space="preserve"><value>Refresh</value></data>
+
+  <data name="GameVaultAccount" xml:space="preserve"><value>GameVault Account</value></data>
+  <data name="AccountDescription" xml:space="preserve"><value>Sign in, add friends and share your game stats.</value></data>
+  <data name="Login" xml:space="preserve"><value>Login</value></data>
+  <data name="Register" xml:space="preserve"><value>Register</value></data>
+  <data name="Username" xml:space="preserve"><value>Username</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="DisplayName" xml:space="preserve"><value>Display name</value></data>
+  <data name="CreateAccount" xml:space="preserve"><value>Create Account</value></data>
+  <data name="AccountConnected" xml:space="preserve"><value>You are connected to the GameVault server.</value></data>
+  <data name="RolePrefix" xml:space="preserve"><value>Role: </value></data>
+  <data name="Logout" xml:space="preserve"><value>Logout</value></data>
+
+  <data name="ServerCatalog" xml:space="preserve"><value>Server Catalog</value></data>
+  <data name="CatalogUpper" xml:space="preserve"><value>CATALOG</value></data>
+  <data name="VersionPrefix" xml:space="preserve"><value>Version </value></data>
+  <data name="InLibrary" xml:space="preserve"><value>In Library</value></data>
+  <data name="Get" xml:space="preserve"><value>Get</value></data>
+  <data name="UnknownSize" xml:space="preserve"><value>Unknown size</value></data>
+  <data name="LoadingServerCatalog" xml:space="preserve"><value>Loading server catalog...</value></data>
+  <data name="VerifyingCatalogSignature" xml:space="preserve"><value>Verifying catalog signature...</value></data>
+  <data name="CatalogSignatureVerified" xml:space="preserve"><value>Catalog signature verified</value></data>
+  <data name="CatalogSignatureNotVerified" xml:space="preserve"><value>Catalog signature not verified</value></data>
+  <data name="CatalogSignatureVerificationFailed" xml:space="preserve"><value>Catalog signature verification failed</value></data>
+  <data name="CatalogSignatureMissing" xml:space="preserve"><value>Catalog signature missing</value></data>
+  <data name="CatalogSignatureInvalid" xml:space="preserve"><value>Catalog signature invalid</value></data>
+  <data name="ServerCatalogEmpty" xml:space="preserve"><value>Server catalog is empty.</value></data>
+  <data name="CatalogRefreshedCount" xml:space="preserve"><value>Catalog refreshed. {0} games available.</value></data>
+  <data name="ServerCatalogUnavailable" xml:space="preserve"><value>Server catalog is unavailable.</value></data>
+  <data name="CatalogCannotBeTrusted" xml:space="preserve"><value>Catalog cannot be used until its signature is verified.</value></data>
+  <data name="NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="Installed" xml:space="preserve"><value>Installed</value></data>
+  <data name="Queued" xml:space="preserve"><value>Queued</value></data>
+  <data name="Downloading" xml:space="preserve"><value>Downloading</value></data>
+  <data name="Installing" xml:space="preserve"><value>Installing</value></data>
+  <data name="AlreadyDownloading" xml:space="preserve"><value>Already downloading</value></data>
+  <data name="Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Failed" xml:space="preserve"><value>Failed</value></data>
+  <data name="DownloadCancelled" xml:space="preserve"><value>Download cancelled.</value></data>
+  <data name="IntegrityCheckFailed" xml:space="preserve"><value>Integrity check failed.</value></data>
+  <data name="ManifestExecutableMissing" xml:space="preserve"><value>The executable from the manifest was not found after extraction.</value></data>
+
+  <data name="FriendsDescription" xml:space="preserve"><value>Add friends and compare your game stats.</value></data>
+  <data name="LogInForFriends" xml:space="preserve"><value>Please log in to use Friends.</value></data>
+  <data name="AddFriendByUsername" xml:space="preserve"><value>Add friend by username</value></data>
+  <data name="SendRequest" xml:space="preserve"><value>Send Request</value></data>
+  <data name="PendingRequests" xml:space="preserve"><value>Pending requests</value></data>
+  <data name="AcceptRequest" xml:space="preserve"><value>Accept Request</value></data>
+  <data name="FriendsList" xml:space="preserve"><value>Friends list</value></data>
+  <data name="GamesUpper" xml:space="preserve"><value>GAMES</value></data>
+  <data name="FriendsPlaytimeUpper" xml:space="preserve"><value>PLAYTIME</value></data>
+  <data name="FavoriteLastPlayed" xml:space="preserve"><value>FAVORITE / LAST PLAYED</value></data>
+  <data name="RemoveFriend" xml:space="preserve"><value>Remove Friend</value></data>
+
+  <data name="WelcomeBack" xml:space="preserve"><value>Hey, you're back</value></data>
+  <data name="GamesReady" xml:space="preserve"><value>Your games are ready. What are we playing?</value></data>
+  <data name="LocalMode" xml:space="preserve"><value>●  LOCAL MODE</value></data>
+  <data name="FeaturedFromLibrary" xml:space="preserve"><value>FEATURED FROM YOUR LIBRARY</value></data>
+  <data name="InYourLibrary" xml:space="preserve"><value>IN YOUR LIBRARY</value></data>
+  <data name="InYourCollection" xml:space="preserve"><value>in your collection</value></data>
+  <data name="PlayTimeUpper" xml:space="preserve"><value>PLAY TIME</value></data>
+  <data name="AcrossAllGames" xml:space="preserve"><value>across all games</value></data>
+  <data name="RecentActivity" xml:space="preserve"><value>Recent Activity</value></data>
+  <data name="RecentActivityDescription" xml:space="preserve"><value>Here's what happened in your collection lately.</value></data>
+  <data name="LastEight" xml:space="preserve"><value>LAST 8</value></data>
+  <data name="NoActivity" xml:space="preserve"><value>No activity has been recorded yet.</value></data>
+  <data name="ActivityWithGame" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="ActivityGameAdded" xml:space="preserve"><value>Game added</value></data>
+  <data name="ActivityGameEdited" xml:space="preserve"><value>Game updated</value></data>
+  <data name="ActivityGameDeleted" xml:space="preserve"><value>Game deleted</value></data>
+  <data name="ActivityLaunched" xml:space="preserve"><value>Game launched</value></data>
+  <data name="ActivityJsonExported" xml:space="preserve"><value>JSON library exported</value></data>
+  <data name="ActivityJsonImported" xml:space="preserve"><value>JSON library imported</value></data>
+  <data name="ActivityHistoryOpenedLabel" xml:space="preserve"><value>Activity history opened</value></data>
+  <data name="ActivityHistoryFailed" xml:space="preserve"><value>Activity history failed</value></data>
+  <data name="ActivityXmlExported" xml:space="preserve"><value>Activity XML exported</value></data>
+  <data name="ActivityArchiveCreated" xml:space="preserve"><value>Activity archive created</value></data>
+  <data name="ActivityArchiveOpened" xml:space="preserve"><value>Activity archive opened</value></data>
+  <data name="ActivityArchiveFailed" xml:space="preserve"><value>Activity archive failed</value></data>
+  <data name="ActivityBackupCreated" xml:space="preserve"><value>Secure backup created</value></data>
+  <data name="ActivityBackupRestored" xml:space="preserve"><value>Secure backup restored</value></data>
+  <data name="ActivityBackupCheck" xml:space="preserve"><value>Backup check started</value></data>
+  <data name="ActivityCatalogRefreshed" xml:space="preserve"><value>Catalog refreshed</value></data>
+  <data name="ActivitySignatureRejected" xml:space="preserve"><value>Catalog signature rejected</value></data>
+  <data name="ActivityDeleteBlocked" xml:space="preserve"><value>File deletion blocked</value></data>
+  <data name="ActivityDeleteFailed" xml:space="preserve"><value>File deletion failed</value></data>
+  <data name="ActivityFilesDeleted" xml:space="preserve"><value>Installed files deleted</value></data>
+  <data name="ActivityDownloadCancelled" xml:space="preserve"><value>Download cancelled</value></data>
+  <data name="ActivityDownloadCompleted" xml:space="preserve"><value>Download completed</value></data>
+  <data name="ActivityDownloadFailed" xml:space="preserve"><value>Download failed</value></data>
+  <data name="ActivityDownloadStarted" xml:space="preserve"><value>Download started</value></data>
+  <data name="ActivityGameInstalled" xml:space="preserve"><value>Game installed from server</value></data>
+  <data name="ActivityShaVerified" xml:space="preserve"><value>SHA256 verified</value></data>
+
+  <data name="GamesShown" xml:space="preserve"><value> games shown</value></data>
+  <data name="SearchByTitle" xml:space="preserve"><value>Search by title</value></data>
+  <data name="SortBy" xml:space="preserve"><value>Sort by</value></data>
+  <data name="NoCover" xml:space="preserve"><value>NO COVER</value></data>
+  <data name="AllGenres" xml:space="preserve"><value>All genres</value></data>
+  <data name="SortTitle" xml:space="preserve"><value>Title A-Z</value></data>
+  <data name="SortReleaseYear" xml:space="preserve"><value>Release Year</value></data>
+  <data name="SortPlayTime" xml:space="preserve"><value>Play Time</value></data>
+  <data name="SortDateAdded" xml:space="preserve"><value>Date Added</value></data>
+  <data name="LocalLibrary" xml:space="preserve"><value>Local library</value></data>
+  <data name="Local" xml:space="preserve"><value>Local</value></data>
+
+  <data name="EnterPassword" xml:space="preserve"><value>Enter password</value></data>
+  <data name="PasswordDescription" xml:space="preserve"><value>The password is used to derive the AES encryption key.</value></data>
+  <data name="ProfileDescription" xml:space="preserve"><value>Your profile, avatar and progress.</value></data>
+  <data name="AvatarUpper" xml:space="preserve"><value>AVATAR</value></data>
+  <data name="UploadAvatar" xml:space="preserve"><value>Upload Avatar</value></data>
+  <data name="FavoriteGame" xml:space="preserve"><value>Favorite game</value></data>
+  <data name="Bio" xml:space="preserve"><value>Bio</value></data>
+  <data name="SaveProfile" xml:space="preserve"><value>Save Profile</value></data>
+  <data name="Achievements" xml:space="preserve"><value>Achievements</value></data>
+  <data name="AchievementsDescription" xml:space="preserve"><value>Milestones unlocked by your GameVault activity.</value></data>
+  <data name="Unlocked" xml:space="preserve"><value>UNLOCKED</value></data>
+  <data name="Locked" xml:space="preserve"><value>LOCKED</value></data>
+  <data name="KeepExploring" xml:space="preserve"><value>Keep exploring GameVault</value></data>
+  <data name="UnlockedOn" xml:space="preserve"><value>Unlocked {0}</value></data>
+  <data name="Achievement_FIRST_GAME_ADDED_Title" xml:space="preserve"><value>First Entry</value></data>
+  <data name="Achievement_FIRST_GAME_ADDED_Description" xml:space="preserve"><value>Add your first game to the library.</value></data>
+  <data name="Achievement_FIRST_LAUNCH_Title" xml:space="preserve"><value>Ready to Play</value></data>
+  <data name="Achievement_FIRST_LAUNCH_Description" xml:space="preserve"><value>Launch a game from GameVault.</value></data>
+  <data name="Achievement_FIVE_GAMES_ADDED_Title" xml:space="preserve"><value>Collector</value></data>
+  <data name="Achievement_FIVE_GAMES_ADDED_Description" xml:space="preserve"><value>Build a library of at least five games.</value></data>
+
+  <data name="ReportsDescription" xml:space="preserve"><value>A quick look at your collection and playtime.</value></data>
+  <data name="GeneratePdfReport" xml:space="preserve"><value>Generate PDF Report</value></data>
+  <data name="TotalGames" xml:space="preserve"><value>TOTAL GAMES</value></data>
+  <data name="TotalPlayTime" xml:space="preserve"><value>TOTAL PLAY TIME</value></data>
+  <data name="TopGenre" xml:space="preserve"><value>TOP GENRE</value></data>
+  <data name="NewestAddedGame" xml:space="preserve"><value>NEWEST ADDED GAME</value></data>
+  <data name="UnlockedAchievements" xml:space="preserve"><value>UNLOCKED ACHIEVEMENTS</value></data>
+  <data name="ReportLocation" xml:space="preserve"><value>REPORT LOCATION</value></data>
+  <data name="PdfContent" xml:space="preserve"><value>PDF CONTENT</value></data>
+  <data name="PdfContentDescription" xml:space="preserve"><value>The report includes your profile, library totals, playtime statistics, complete game table and achievement status.</value></data>
+  <data name="PersonalGameLibraryReport" xml:space="preserve"><value>Personal Game Library Report</value></data>
+  <data name="GeneratedAt" xml:space="preserve"><value>Generated: {0}</value></data>
+  <data name="Page" xml:space="preserve"><value>Page </value></data>
+  <data name="Of" xml:space="preserve"><value> of </value></data>
+  <data name="UserProfile" xml:space="preserve"><value>User Profile</value></data>
+  <data name="FavoriteGameValue" xml:space="preserve"><value>Favorite game: {0}</value></data>
+  <data name="BioValue" xml:space="preserve"><value>Bio: {0}</value></data>
+  <data name="Year" xml:space="preserve"><value>Year</value></data>
+  <data name="Playtime" xml:space="preserve"><value>Playtime</value></data>
+  <data name="NewestGameValue" xml:space="preserve"><value>Newest added game: {0}</value></data>
+  <data name="NotSpecified" xml:space="preserve"><value>Not specified</value></data>
+  <data name="NoGames" xml:space="preserve"><value>No games</value></data>
+
+  <data name="SettingsDescription" xml:space="preserve"><value>Make GameVault yours and choose where games are stored.</value></data>
+  <data name="ApplicationUpper" xml:space="preserve"><value>LOOK &amp; LANGUAGE</value></data>
+  <data name="AccentColor" xml:space="preserve"><value>Interface color</value></data>
+  <data name="Purple" xml:space="preserve"><value>Purple</value></data>
+  <data name="Blue" xml:space="preserve"><value>Blue</value></data>
+  <data name="Green" xml:space="preserve"><value>Green</value></data>
+  <data name="Orange" xml:space="preserve"><value>Orange</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="English" xml:space="preserve"><value>English</value></data>
+  <data name="Croatian" xml:space="preserve"><value>Hrvatski</value></data>
+  <data name="IniLocation" xml:space="preserve"><value>INI location: </value></data>
+  <data name="DownloadsUpper" xml:space="preserve"><value>DOWNLOADS</value></data>
+  <data name="DefaultInstallFolder" xml:space="preserve"><value>Where to store games</value></data>
+  <data name="DownloadSpeedLimit" xml:space="preserve"><value>Download speed</value></data>
+  <data name="Unlimited" xml:space="preserve"><value>Unlimited</value></data>
+  <data name="ServerDiscoveryUpper" xml:space="preserve"><value>GAMEVAULT SERVER</value></data>
+  <data name="FindGameVaultServer" xml:space="preserve"><value>Find server</value></data>
+  <data name="SaveSettings" xml:space="preserve"><value>Save changes</value></data>
+  <data name="NetworkDiagnostics" xml:space="preserve"><value>NETWORK CHECK</value></data>
+  <data name="NetworkDiagnosticsDescription" xml:space="preserve"><value>Quickly check your GameVault server and internet connection.</value></data>
+  <data name="DiscoveryStatus" xml:space="preserve"><value>Discovery Status</value></data>
+  <data name="LanServerIp" xml:space="preserve"><value>LAN Server IP</value></data>
+  <data name="ServerName" xml:space="preserve"><value>Server Name</value></data>
+  <data name="ServerVersion" xml:space="preserve"><value>Server Version</value></data>
+  <data name="ServerStatus" xml:space="preserve"><value>Server Status</value></data>
+  <data name="ApiBaseUrl" xml:space="preserve"><value>API Base URL</value></data>
+  <data name="FilesBaseUrl" xml:space="preserve"><value>Files Base URL</value></data>
+  <data name="ManifestUrl" xml:space="preserve"><value>Manifest URL</value></data>
+  <data name="PublicClientIp" xml:space="preserve"><value>Public Client IP</value></data>
+  <data name="LastChecked" xml:space="preserve"><value>Last Checked</value></data>
+  <data name="RunNetworkDiagnostics" xml:space="preserve"><value>Check network</value></data>
+
+  <data name="BackupTransfer" xml:space="preserve"><value>Backup &amp; Transfer</value></data>
+  <data name="BackupTransferDescription" xml:space="preserve"><value>Move your collection to another device or keep a safe backup.</value></data>
+  <data name="GameLibrary" xml:space="preserve"><value>Game Library</value></data>
+  <data name="GameLibraryTransferDescription" xml:space="preserve"><value>Use this to move your game library between devices.</value></data>
+  <data name="ExportLibrary" xml:space="preserve"><value>Export Library</value></data>
+  <data name="ImportLibrary" xml:space="preserve"><value>Import Library</value></data>
+  <data name="FormatJson" xml:space="preserve"><value>Format: JSON</value></data>
+  <data name="SecureBackup" xml:space="preserve"><value>Secure Backup</value></data>
+  <data name="SecureBackupDescription" xml:space="preserve"><value>Creates an encrypted password-protected backup.</value></data>
+  <data name="CreateSecureBackup" xml:space="preserve"><value>Create Secure Backup</value></data>
+  <data name="CheckBackupFile" xml:space="preserve"><value>Check Backup File</value></data>
+  <data name="RestoreSecureBackup" xml:space="preserve"><value>Restore Secure Backup</value></data>
+  <data name="FormatGvb" xml:space="preserve"><value>Format: .gvb</value></data>
+  <data name="ActivityHistory" xml:space="preserve"><value>Activity History</value></data>
+  <data name="ActivityHistoryDescription" xml:space="preserve"><value>Creates a readable activity history file for review or analysis.</value></data>
+  <data name="ExportActivityHistory" xml:space="preserve"><value>Export Activity History</value></data>
+  <data name="OpenActivityHistory" xml:space="preserve"><value>Open Activity History</value></data>
+  <data name="FormatXml" xml:space="preserve"><value>Format: XML</value></data>
+  <data name="ActivityArchive" xml:space="preserve"><value>Activity Archive</value></data>
+  <data name="ActivityArchiveDescription" xml:space="preserve"><value>Creates a compact archive of your activity history.</value></data>
+  <data name="CreateActivityArchive" xml:space="preserve"><value>Create Activity Archive</value></data>
+  <data name="OpenActivityArchive" xml:space="preserve"><value>Open Activity Archive</value></data>
+  <data name="FormatActivityArchive" xml:space="preserve"><value>Format: GameVault Activity Archive (.gvactivity)</value></data>
+  <data name="ArchiveSummaryTooltip" xml:space="preserve"><value>Reads the archive summary without importing it.</value></data>
+
+  <data name="SettingsSavedTo" xml:space="preserve"><value>Settings saved to {0}</value></data>
+  <data name="Searching" xml:space="preserve"><value>Searching...</value></data>
+  <data name="SearchingForServer" xml:space="preserve"><value>Searching for GameVault server...</value></data>
+  <data name="ServerUnavailable" xml:space="preserve"><value>Server unavailable</value></data>
+  <data name="InvalidDiscoveryResponse" xml:space="preserve"><value>Invalid discovery response.</value></data>
+  <data name="NetworkSearchError" xml:space="preserve"><value>Network error while searching for server.</value></data>
+  <data name="NetworkStatusError" xml:space="preserve"><value>Network error while reading server status.</value></data>
+  <data name="ServerFoundStatusUnavailable" xml:space="preserve"><value>Server found; status unavailable</value></data>
+  <data name="ServerStatusUnavailable" xml:space="preserve"><value>Server status unavailable</value></data>
+  <data name="ServerFound" xml:space="preserve"><value>Server found: {0}</value></data>
+  <data name="ServerSettingsUpdated" xml:space="preserve"><value>Server settings updated</value></data>
+  <data name="GameVaultServerUnavailable" xml:space="preserve"><value>GameVault server unavailable.</value></data>
+  <data name="Checking" xml:space="preserve"><value>Checking...</value></data>
+  <data name="RunningDiagnostics" xml:space="preserve"><value>Running network diagnostics...</value></data>
+  <data name="NotChecked" xml:space="preserve"><value>Not checked</value></data>
+  <data name="NotAvailable" xml:space="preserve"><value>Not available</value></data>
+  <data name="Never" xml:space="preserve"><value>Never</value></data>
+  <data name="Connected" xml:space="preserve"><value>Connected</value></data>
+  <data name="DiagnosticsCompleted" xml:space="preserve"><value>Diagnostics completed.</value></data>
+  <data name="DiagnosticsWarnings" xml:space="preserve"><value>Diagnostics completed with warnings.</value></data>
+  <data name="ExternalRestFailed" xml:space="preserve"><value>External REST check failed.</value></data>
+  <data name="DiagnosticsBothFailed" xml:space="preserve"><value>GameVault server unavailable. External REST check failed. Diagnostics completed with warnings.</value></data>
+  <data name="DiagnosticsExternalFailed" xml:space="preserve"><value>External REST check failed. Diagnostics completed with warnings.</value></data>
+  <data name="DiagnosticsServerFailed" xml:space="preserve"><value>GameVault server unavailable. Diagnostics completed with warnings.</value></data>
+
+  <data name="Validation" xml:space="preserve"><value>Validation</value></data>
+  <data name="TitleRequired" xml:space="preserve"><value>Title is required.</value></data>
+  <data name="ValidReleaseYearRequired" xml:space="preserve"><value>Enter a valid release year.</value></data>
+  <data name="SelectGameExecutable" xml:space="preserve"><value>Select game executable</value></data>
+  <data name="SelectInstallFolder" xml:space="preserve"><value>Select game install folder</value></data>
+  <data name="SelectCoverImage" xml:space="preserve"><value>Select cover image</value></data>
+  <data name="SelectAvatarImage" xml:space="preserve"><value>Select avatar image</value></data>
+  <data name="ExecutableFilesFilter" xml:space="preserve"><value>Executable files (*.exe)|*.exe|All files (*.*)|*.*</value></data>
+  <data name="ImageFilesFilter" xml:space="preserve"><value>Image files (*.png;*.jpg;*.jpeg;*.webp)|*.png;*.jpg;*.jpeg;*.webp|All files (*.*)|*.*</value></data>
+  <data name="AvatarImageFilesFilter" xml:space="preserve"><value>Image files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*</value></data>
+  <data name="PasswordRequired" xml:space="preserve"><value>Password cannot be empty.</value></data>
+  <data name="DeleteGame" xml:space="preserve"><value>Delete Game</value></data>
+  <data name="ConfirmDeleteGame" xml:space="preserve"><value>Delete "{0}" from your library?</value></data>
+  <data name="ConfirmCatalogDelete" xml:space="preserve"><value>"{0}" was installed by GameVault.\n\nYes: delete the library entry and installed files.\nNo: remove the library entry only.\nCancel: keep the game.</value></data>
+  <data name="UnsafeDeletePrompt" xml:space="preserve"><value>Game files were not deleted because the install path is outside the GameVault install folder or is protected.\n\n{0}\n\nRemove only the library entry?</value></data>
+  <data name="FilesNotDeleted" xml:space="preserve"><value>Files Were Not Deleted</value></data>
+  <data name="UnableDeleteFiles" xml:space="preserve"><value>Unable to Delete Game Files</value></data>
+  <data name="UnableLaunchGame" xml:space="preserve"><value>Unable to launch game</value></data>
+  <data name="NoExecutableConfigured" xml:space="preserve"><value>No executable file is configured for {0}.</value></data>
+  <data name="ExecutableMissing" xml:space="preserve"><value>The executable file does not exist:\n{0}</value></data>
+  <data name="LaunchFailed" xml:space="preserve"><value>GameVault could not launch {0}.\n{1}</value></data>
+  <data name="InstalledFilesDeleteFailed" xml:space="preserve"><value>The installed files could not be deleted. The library entry was kept.\n\n{0}</value></data>
+  <data name="InstallPathEmpty" xml:space="preserve"><value>The install path is empty.</value></data>
+  <data name="InstallFolderMissing" xml:space="preserve"><value>The install folder does not exist.</value></data>
+  <data name="InstallRootProtected" xml:space="preserve"><value>The GameVault install root cannot be deleted.</value></data>
+  <data name="ProtectedRoot" xml:space="preserve"><value>A protected root folder cannot be deleted.</value></data>
+  <data name="InstallPathOutside" xml:space="preserve"><value>The install path is outside the GameVault install folder.</value></data>
+  <data name="InvalidInstallPath" xml:space="preserve"><value>The install path is not valid.</value></data>
+
+  <data name="EnterUsernamePassword" xml:space="preserve"><value>Enter username and password.</value></data>
+  <data name="LoginSuccessful" xml:space="preserve"><value>Login successful.</value></data>
+  <data name="EnterRegistrationFields" xml:space="preserve"><value>Enter username, password and display name.</value></data>
+  <data name="RegistrationSuccessful" xml:space="preserve"><value>Registration successful. You are now logged in.</value></data>
+  <data name="Connecting" xml:space="preserve"><value>Connecting...</value></data>
+  <data name="LoginFailed" xml:space="preserve"><value>Login could not be completed.</value></data>
+  <data name="LoggedOut" xml:space="preserve"><value>Logged out.</value></data>
+  <data name="Refreshing" xml:space="preserve"><value>Refreshing...</value></data>
+  <data name="FriendsUpdated" xml:space="preserve"><value>Friends updated.</value></data>
+  <data name="FriendsLoadFailed" xml:space="preserve"><value>Friends could not be loaded.</value></data>
+  <data name="EnterUsername" xml:space="preserve"><value>Enter a username.</value></data>
+  <data name="FriendRequestSent" xml:space="preserve"><value>Friend request sent.</value></data>
+  <data name="FriendAccepted" xml:space="preserve"><value>Accepted {0}.</value></data>
+  <data name="FriendRemoved" xml:space="preserve"><value>Removed {0}.</value></data>
+  <data name="OperationCouldNotComplete" xml:space="preserve"><value>The operation could not be completed.</value></data>
+  <data name="ApiUsernameTaken" xml:space="preserve"><value>Username is already taken.</value></data>
+  <data name="ApiInvalidCredentials" xml:space="preserve"><value>Invalid username or password.</value></data>
+  <data name="ApiUserNotFound" xml:space="preserve"><value>User was not found.</value></data>
+  <data name="ApiCannotFriendSelf" xml:space="preserve"><value>You cannot send a friend request to yourself.</value></data>
+  <data name="ApiFriendshipExists" xml:space="preserve"><value>A friendship or friend request already exists between these users.</value></data>
+  <data name="ApiPendingRequestNotFound" xml:space="preserve"><value>Pending friend request was not found.</value></data>
+  <data name="ApiFriendshipNotFound" xml:space="preserve"><value>Friendship was not found.</value></data>
+  <data name="ProfileFieldsRequired" xml:space="preserve"><value>Username and display name are required.</value></data>
+  <data name="ProfileSaved" xml:space="preserve"><value>Profile saved.</value></data>
+  <data name="AvatarSelected" xml:space="preserve"><value>Avatar selected. Click Save Profile to store it in SQLite.</value></data>
+  <data name="AvatarLoadFailed" xml:space="preserve"><value>Avatar could not be loaded: {0}</value></data>
+  <data name="ReportSavedTo" xml:space="preserve"><value>Report saved to: {0}</value></data>
+  <data name="ReportGenerated" xml:space="preserve"><value>PDF report successfully generated:\n{0}</value></data>
+  <data name="GameVaultReport" xml:space="preserve"><value>GameVault Report</value></data>
+  <data name="ReportGenerationFailed" xml:space="preserve"><value>Report could not be generated: {0}</value></data>
+  <data name="PdfReportError" xml:space="preserve"><value>PDF Report Error</value></data>
+  <data name="OperationFailed" xml:space="preserve"><value>Operation failed: {0}</value></data>
+  <data name="UnexpectedError" xml:space="preserve"><value>Unexpected error</value></data>
+  <data name="GameVaultError" xml:space="preserve"><value>GameVault Error</value></data>
+  <data name="Unavailable" xml:space="preserve"><value>Unavailable</value></data>
+  <data name="JsonExportFilter" xml:space="preserve"><value>GameVault JSON Export (*.json)|*.json</value></data>
+  <data name="ActivityXmlFilter" xml:space="preserve"><value>GameVault Activity XML (*.xml)|*.xml</value></data>
+  <data name="ActivityHistoryFilter" xml:space="preserve"><value>GameVault Activity History (*.xml)|*.xml</value></data>
+  <data name="ActivityArchiveFilter" xml:space="preserve"><value>GameVault Activity Archive (*.gvactivity)|*.gvactivity</value></data>
+  <data name="SecureBackupFilter" xml:space="preserve"><value>GameVault Secure Backup (*.gvb)|*.gvb</value></data>
+  <data name="LibraryExportCreated" xml:space="preserve"><value>Library export created successfully:\n{0}</value></data>
+  <data name="ActivityHistoryCreated" xml:space="preserve"><value>Activity history file created successfully:\n{0}</value></data>
+  <data name="ActivityHistoryOpenFailed" xml:space="preserve"><value>This activity history file could not be opened.</value></data>
+  <data name="ActivityArchiveCreatedPath" xml:space="preserve"><value>Activity archive created successfully:\n{0}</value></data>
+  <data name="SecureBackupCreatedDetails" xml:space="preserve"><value>Secure backup created successfully:\n{0}\n\nThe backup is AES encrypted and includes an internal SHA256 integrity check.</value></data>
+  <data name="BackupCheckTitle" xml:space="preserve"><value>GameVault Backup Check</value></data>
+  <data name="SecureBackupRestoredCount" xml:space="preserve"><value>Secure backup restored. {0} new games added; duplicates were skipped.</value></data>
+  <data name="ValidBackup" xml:space="preserve"><value>Backup is valid</value></data>
+  <data name="FileNotFound" xml:space="preserve"><value>File not found</value></data>
+  <data name="InvalidBackupFormat" xml:space="preserve"><value>Invalid backup format</value></data>
+  <data name="InvalidFile" xml:space="preserve"><value>The selected file is invalid.</value></data>
+  <data name="StatsSyncAutomatic" xml:space="preserve"><value>Stats sync automatically</value></data>
+  <data name="LastSynced" xml:space="preserve"><value>Last synced: {0}</value></data>
+  <data name="SyncUnavailable" xml:space="preserve"><value>Sync unavailable</value></data>
+  <data name="WrongPasswordIntegrity" xml:space="preserve"><value>Wrong password or integrity check failed</value></data>
+  <data name="BackupToolNotFound" xml:space="preserve"><value>Backup verification tool was not found.</value></data>
+  <data name="BackupToolInvalidArguments" xml:space="preserve"><value>Backup verification tool received invalid arguments.</value></data>
+  <data name="UnexpectedErrorDetails" xml:space="preserve"><value>Unexpected error: {0}</value></data>
+  <data name="ImportComplete" xml:space="preserve"><value>Import complete. {0} new games imported; duplicates were skipped.</value></data>
+  <data name="NoActivityRecords" xml:space="preserve"><value>No activity records</value></data>
+  <data name="ArchiveSummary" xml:space="preserve"><value>Activity archive summary:</value></data>
+  <data name="HistorySummary" xml:space="preserve"><value>Activity history summary:</value></data>
+  <data name="FormatVersion" xml:space="preserve"><value>Format version: {0}</value></data>
+  <data name="ExportedAt" xml:space="preserve"><value>Exported: {0}</value></data>
+  <data name="RecordsCount" xml:space="preserve"><value>Records: {0}</value></data>
+  <data name="FirstActivity" xml:space="preserve"><value>First activity: {0}</value></data>
+  <data name="LastActivity" xml:space="preserve"><value>Last activity: {0}</value></data>
+  <data name="Preview" xml:space="preserve"><value>Preview:</value></data>
+</root>

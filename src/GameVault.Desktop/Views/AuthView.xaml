@@ -1,6 +1,7 @@
 <UserControl x:Class="GameVault.Views.AuthView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GameVault.Localization">
     <UserControl.Resources>
         <Style x:Key="AuthInputStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
@@ -64,29 +65,29 @@
                 CornerRadius="16">
             <Grid>
                 <StackPanel Visibility="{Binding LoginFormVisibility}">
-                    <TextBlock Text="GameVault Account" FontSize="30" FontWeight="SemiBold" />
-                    <TextBlock Text="Connect your account for Friends and public statistics."
+                    <TextBlock Text="{loc:Loc GameVaultAccount}" FontSize="30" FontWeight="SemiBold" />
+                    <TextBlock Text="{loc:Loc AccountDescription}"
                                Margin="0,7,0,22"
                                Foreground="{StaticResource MutedTextBrush}" />
 
                     <TabControl Background="Transparent"
                                 BorderThickness="0"
                                 Padding="0">
-                        <TabItem Header="Login"
+                        <TabItem Header="{loc:Loc Login}"
                                  Style="{StaticResource AuthTabItemStyle}">
                             <StackPanel Margin="0,22,0,0">
-                                <TextBlock Text="Username" Margin="0,0,0,7" />
+                                <TextBlock Text="{loc:Loc Username}" Margin="0,0,0,7" />
                                 <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                                          Style="{StaticResource AuthInputStyle}" />
 
-                                <TextBlock Text="Password" Margin="0,17,0,7" />
+                                <TextBlock Text="{loc:Loc Password}" Margin="0,17,0,7" />
                                 <PasswordBox PasswordChanged="PasswordBox_OnPasswordChanged"
                                              Foreground="{StaticResource TextBrush}"
                                              Background="{StaticResource SurfaceLightBrush}"
                                              BorderBrush="#303647"
                                              Padding="12,10" />
 
-                                <Button Content="Login"
+                                <Button Content="{loc:Loc Login}"
                                         Margin="0,22,0,0"
                                         HorizontalAlignment="Left"
                                         Command="{Binding LoginCommand}"
@@ -94,25 +95,25 @@
                             </StackPanel>
                         </TabItem>
 
-                        <TabItem Header="Register"
+                        <TabItem Header="{loc:Loc Register}"
                                  Style="{StaticResource AuthTabItemStyle}">
                             <StackPanel Margin="0,22,0,0">
-                                <TextBlock Text="Username" Margin="0,0,0,7" />
+                                <TextBlock Text="{loc:Loc Username}" Margin="0,0,0,7" />
                                 <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                                          Style="{StaticResource AuthInputStyle}" />
 
-                                <TextBlock Text="Password" Margin="0,17,0,7" />
+                                <TextBlock Text="{loc:Loc Password}" Margin="0,17,0,7" />
                                 <PasswordBox PasswordChanged="PasswordBox_OnPasswordChanged"
                                              Foreground="{StaticResource TextBrush}"
                                              Background="{StaticResource SurfaceLightBrush}"
                                              BorderBrush="#303647"
                                              Padding="12,10" />
 
-                                <TextBlock Text="Display name" Margin="0,17,0,7" />
+                                <TextBlock Text="{loc:Loc DisplayName}" Margin="0,17,0,7" />
                                 <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"
                                          Style="{StaticResource AuthInputStyle}" />
 
-                                <Button Content="Create Account"
+                                <Button Content="{loc:Loc CreateAccount}"
                                         Margin="0,22,0,0"
                                         HorizontalAlignment="Left"
                                         Command="{Binding RegisterCommand}"
@@ -128,18 +129,18 @@
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding LoggedInVisibility}">
-                    <TextBlock Text="GameVault Account" FontSize="30" FontWeight="SemiBold" />
-                    <TextBlock Text="You are connected to the GameVault server."
+                    <TextBlock Text="{loc:Loc GameVaultAccount}" FontSize="30" FontWeight="SemiBold" />
+                    <TextBlock Text="{loc:Loc AccountConnected}"
                                Margin="0,7,0,24"
                                Foreground="{StaticResource MutedTextBrush}" />
                     <TextBlock Text="{Binding SessionUsername}"
                                FontSize="23"
                                FontWeight="SemiBold" />
                     <TextBlock Margin="0,5,0,22" Foreground="{StaticResource MutedTextBrush}">
-                        <Run Text="Role: " />
+                        <Run Text="{loc:Loc RolePrefix}" />
                         <Run Text="{Binding SessionRole, Mode=OneWay}" />
                     </TextBlock>
-                    <Button Content="Logout"
+                    <Button Content="{loc:Loc Logout}"
                             HorizontalAlignment="Left"
                             Command="{Binding LogoutCommand}"
                             Style="{StaticResource AuthButtonStyle}" />

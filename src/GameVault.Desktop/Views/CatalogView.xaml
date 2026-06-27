@@ -1,6 +1,7 @@
 <UserControl x:Class="GameVault.Views.CatalogView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:GameVault.Localization">
     <UserControl.Resources>
         <Style x:Key="CatalogButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White" />
@@ -48,11 +49,16 @@
         <StackPanel Margin="42,35,42,40">
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="Server Catalog" FontSize="30" FontWeight="SemiBold" />
+                    <TextBlock Text="{loc:Loc ServerCatalog}" FontSize="30" FontWeight="SemiBold" />
                     <TextBlock Text="{Binding StatusMessage, Mode=OneWay}"
                                Margin="0,7,0,0"
                                Foreground="{StaticResource MutedTextBrush}"
                                FontSize="14" />
+                    <TextBlock Text="{Binding SignatureStatus, Mode=OneWay}"
+                               Margin="0,5,0,0"
+                               Foreground="{DynamicResource PrimaryBrush}"
+                               FontSize="12"
+                               FontWeight="SemiBold" />
                 </StackPanel>
             </Grid>
 
@@ -92,7 +98,7 @@
                                                        FontSize="24"
                                                        FontWeight="Bold"
                                                        HorizontalAlignment="Center" />
-                                            <TextBlock Text="CATALOG"
+                                            <TextBlock Text="{loc:Loc CatalogUpper}"
                                                        Margin="0,4,0,0"
                                                        Foreground="#8FFFFFFF"
                                                        FontSize="9"
@@ -121,7 +127,7 @@
                                     <TextBlock Margin="0,5,0,0"
                                                Foreground="{StaticResource MutedTextBrush}"
                                                FontSize="12">
-                                        <Run Text="Version " />
+                                        <Run Text="{loc:Loc VersionPrefix}" />
                                         <Run Text="{Binding Version, Mode=OneWay}" />
                                         <Run Text=" · " />
                                         <Run Text="{Binding SizeText, Mode=OneWay}" />

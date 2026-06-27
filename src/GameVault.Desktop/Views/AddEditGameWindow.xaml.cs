@@ -1,6 +1,7 @@
 using System.IO;
 using System.Windows;
 using GameVault.Core.Models;
+using GameVault.Localization;
 using Microsoft.Win32;
 
 namespace GameVault.Views;
@@ -19,8 +20,8 @@ public partial class AddEditGameWindow : Window
             return;
         }
 
-        Title = "Edit Game";
-        HeadingText.Text = "Edit Game";
+        Title = LocalizationService.Instance.Get("EditGame");
+        HeadingText.Text = LocalizationService.Instance.Get("EditGame");
         TitleTextBox.Text = existingGame.Title;
         GenreTextBox.Text = existingGame.Genre;
         ReleaseYearTextBox.Text = existingGame.ReleaseYear.ToString();
@@ -36,7 +37,8 @@ public partial class AddEditGameWindow : Window
     {
         if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
         {
-            MessageBox.Show("Title is required.", "Validation",
+            MessageBox.Show(LocalizationService.Instance.Get("TitleRequired"),
+                LocalizationService.Instance.Get("Validation"),
                 MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
@@ -45,7 +47,8 @@ public partial class AddEditGameWindow : Window
             || releaseYear < 1950
             || releaseYear > DateTime.Now.Year + 1)
         {
-            MessageBox.Show("Enter a valid release year.", "Validation",
+            MessageBox.Show(LocalizationService.Instance.Get("ValidReleaseYearRequired"),
+                LocalizationService.Instance.Get("Validation"),
                 MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
@@ -76,8 +79,8 @@ public partial class AddEditGameWindow : Window
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Select game executable",
-            Filter = "Executable files (*.exe)|*.exe|All files (*.*)|*.*"
+            Title = LocalizationService.Instance.Get("SelectGameExecutable"),
+            Filter = LocalizationService.Instance.Get("ExecutableFilesFilter")
         };
 
         if (dialog.ShowDialog(this) == true)
@@ -95,7 +98,7 @@ public partial class AddEditGameWindow : Window
     {
         var dialog = new OpenFolderDialog
         {
-            Title = "Select game install folder"
+            Title = LocalizationService.Instance.Get("SelectInstallFolder")
         };
 
         if (dialog.ShowDialog(this) == true)
@@ -108,8 +111,8 @@ public partial class AddEditGameWindow : Window
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Select cover image",
-            Filter = "Image files (*.png;*.jpg;*.jpeg;*.webp)|*.png;*.jpg;*.jpeg;*.webp|All files (*.*)|*.*"
+            Title = LocalizationService.Instance.Get("SelectCoverImage"),
+            Filter = LocalizationService.Instance.Get("ImageFilesFilter")
         };
 
         if (dialog.ShowDialog(this) == true)

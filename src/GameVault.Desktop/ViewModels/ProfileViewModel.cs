@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GameVault.Core.Models;
 using GameVault.Data;
+using GameVault.Localization;
 using Microsoft.Win32;
 
 namespace GameVault.ViewModels;
@@ -95,7 +96,7 @@ public class ProfileViewModel : ViewModelBase
         if (string.IsNullOrWhiteSpace(Username)
             || string.IsNullOrWhiteSpace(DisplayName))
         {
-            StatusMessage = "Username and display name are required.";
+            StatusMessage = LocalizationService.Instance.Get("ProfileFieldsRequired");
             return;
         }
 
@@ -106,15 +107,15 @@ public class ProfileViewModel : ViewModelBase
         _profile.AvatarImageBytes = _avatarImageBytes;
 
         _profileRepository.UpdateProfile(_profile);
-        StatusMessage = "Profile saved.";
+        StatusMessage = LocalizationService.Instance.Get("ProfileSaved");
     }
 
     private void UploadAvatar()
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Select avatar image",
-            Filter = "Image files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*"
+            Title = LocalizationService.Instance.Get("SelectAvatarImage"),
+            Filter = LocalizationService.Instance.Get("AvatarImageFilesFilter")
         };
 
         if (dialog.ShowDialog() != true)
@@ -126,11 +127,11 @@ public class ProfileViewModel : ViewModelBase
         {
             _avatarImageBytes = File.ReadAllBytes(dialog.FileName);
             AvatarImage = CreateImage(_avatarImageBytes);
-            StatusMessage = "Avatar selected. Click Save Profile to store it in SQLite.";
+            StatusMessage = LocalizationService.Instance.Get("AvatarSelected");
         }
         catch (Exception exception)
         {
-            StatusMessage = $"Avatar could not be loaded: {exception.Message}";
+            StatusMessage = LocalizationService.Instance.Format("AvatarLoadFailed", exception.Message);
         }
     }
 
@@ -145,8 +146,10 @@ public class ProfileViewModel : ViewModelBase
             Achievements.Add(new AchievementItemViewModel
             {
                 Code = achievement.Code,
-                Title = achievement.Title,
-                Description = achievement.Description,
+                Title = LocalizationService.Instance.GetOrDefault(
+                    $"Achievement_{achievement.Code}_Title", achievement.Title),
+                Description = LocalizationService.Instance.GetOrDefault(
+                    $"Achievement_{achievement.Code}_Description", achievement.Description),
                 IsUnlocked = isUnlocked,
                 UnlockedAt = isUnlocked ? unlockedAt : null
             });

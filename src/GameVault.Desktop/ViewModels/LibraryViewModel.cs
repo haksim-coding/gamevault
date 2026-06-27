@@ -1,9 +1,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Data;
 using System.Windows.Input;
 using GameVault.Core.Models;
 using GameVault.Data;
+using GameVault.Localization;
 using GameVault.Services;
 
 namespace GameVault.ViewModels;
@@ -15,8 +17,9 @@ public class LibraryViewModel : ViewModelBase
     private readonly GameDialogService _dialogService;
     private readonly GameLauncherService _launcherService;
     private readonly DownloadManagerService _downloadManagerService;
+    private readonly IniSettingsService _settingsService;
     private string _searchText = string.Empty;
-    private string _selectedGenre = "All genres";
+    private string _selectedGenre = LocalizationService.Instance.Get("AllGenres");
     private string _selectedSort = "Title A-Z";
 
     public LibraryViewModel(
@@ -24,13 +27,15 @@ public class LibraryViewModel : ViewModelBase
         ActivityLogRepository activityLogRepository,
         GameDialogService dialogService,
         GameLauncherService launcherService,
-        DownloadManagerService downloadManagerService)
+        DownloadManagerService downloadManagerService,
+        IniSettingsService settingsService)
     {
         _repository = repository;
         _activityLogRepository = activityLogRepository;
         _dialogService = dialogService;
         _launcherService = launcherService;
         _downloadManagerService = downloadManagerService;
+        _settingsService = settingsService;
 
         GamesView = CollectionViewSource.GetDefaultView(Games);
         GamesView.Filter = FilterGame;
@@ -39,14 +44,19 @@ public class LibraryViewModel : ViewModelBase
         EditGameCommand = new RelayCommand(EditGame);
         DeleteGameCommand = new RelayCommand(DeleteGame);
         PlayGameCommand = new RelayCommand(PlayGame);
+        LocalizationService.Instance.LanguageChanged += (_, _) => LoadGames();
 
         LoadGames();
     }
 
     public ObservableCollection<Game> Games { get; } = [];
-    public ObservableCollection<string> Genres { get; } = ["All genres"];
-    public ObservableCollection<string> SortOptions { get; } =
-        ["Title A-Z", "Release Year", "Play Time", "Date Added"];
+    public ObservableCollection<string> Genres { get; } =
+        [LocalizationService.Instance.Get("AllGenres")];
+    public ObservableCollection<LocalizedOption> SortOptions { get; } =
+    [
+        new("Title A-Z", "SortTitle"), new("Release Year", "SortReleaseYear"),
+        new("Play Time", "SortPlayTime"), new("Date Added", "SortDateAdded")
+    ];
     public ICollectionView GamesView { get; }
     public int GameCount => GamesView.Cast<Game>().Count();
 
@@ -146,7 +156,8 @@ public class LibraryViewModel : ViewModelBase
         var selectedGenre = SelectedGenre;
 
         Genres.Clear();
-        Genres.Add("All genres");
+        var allGenres = LocalizationService.Instance.Get("AllGenres");
+        Genres.Add(allGenres);
 
         foreach (var genre in Games
                      .Select(game => game.Genre)
@@ -157,7 +168,7 @@ public class LibraryViewModel : ViewModelBase
             Genres.Add(genre);
         }
 
-        SelectedGenre = Genres.Contains(selectedGenre) ? selectedGenre : "All genres";
+        SelectedGenre = Genres.Contains(selectedGenre) ? selectedGenre : allGenres;
     }
 
     private bool FilterGame(object item)
@@ -169,7 +180,7 @@ public class LibraryViewModel : ViewModelBase
 
         var matchesTitle = string.IsNullOrWhiteSpace(SearchText)
                            || game.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
-        var matchesGenre = SelectedGenre == "All genres"
+        var matchesGenre = SelectedGenre == LocalizationService.Instance.Get("AllGenres")
                            || game.Genre.Equals(SelectedGenre, StringComparison.OrdinalIgnoreCase);
 
         return matchesTitle && matchesGenre;
@@ -227,11 +238,60 @@ public class LibraryViewModel : ViewModelBase
             return;
         }
 
-        if (!_dialogService.ConfirmDelete(game.Title))
+        if (string.IsNullOrWhiteSpace(game.CatalogId))
+        {
+            if (!_dialogService.ConfirmDelete(game.Title))
+            {
+                return;
+            }
+
+            DeleteLibraryEntry(game);
+            return;
+        }
+
+        var choice = _dialogService.ConfirmCatalogDelete(game.Title);
+        if (choice == CatalogDeleteChoice.Cancel)
         {
             return;
         }
 
+        if (choice == CatalogDeleteChoice.LibraryOnly)
+        {
+            DeleteLibraryEntry(game);
+            return;
+        }
+
+        var settings = _settingsService.Load();
+        if (!InstallFolderSafetyService.IsSafeToDeleteInstallFolder(
+                game.InstallPath,
+                settings.DefaultInstallFolder,
+                out var reason))
+        {
+            _activityLogRepository.AddEntry("CatalogFileDeleteBlocked", game.Title);
+            if (_dialogService.ConfirmLibraryOnlyAfterUnsafePath(reason))
+            {
+                DeleteLibraryEntry(game);
+            }
+
+            return;
+        }
+
+        try
+        {
+            Directory.Delete(game.InstallPath, recursive: true);
+            _activityLogRepository.AddEntry("CatalogFilesDeleted", game.Title);
+            DeleteLibraryEntry(game);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            _activityLogRepository.AddEntry("CatalogFileDeleteFailed", game.Title);
+            _dialogService.ShowDeleteError(
+                LocalizationService.Instance.Format("InstalledFilesDeleteFailed", exception.Message));
+        }
+    }
+
+    private void DeleteLibraryEntry(Game game)
+    {
         _repository.DeleteGame(game.Id);
         _activityLogRepository.AddEntry("GameDeleted", game.Title);
         LoadGames();

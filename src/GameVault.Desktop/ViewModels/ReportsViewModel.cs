@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Input;
+using GameVault.Localization;
 using GameVault.Services;
 
 namespace GameVault.ViewModels;
@@ -69,7 +70,7 @@ public class ReportsViewModel : ViewModelBase
         TotalGames = data.TotalGames;
         TotalPlayTime = FormatMinutes(data.TotalPlayTimeMinutes);
         MostCommonGenre = data.MostCommonGenre;
-        NewestAddedGame = data.NewestAddedGame?.Title ?? "No games";
+        NewestAddedGame = data.NewestAddedGame?.Title ?? LocalizationService.Instance.Get("NoGames");
         UnlockedAchievements = data.UnlockedAchievementCount;
     }
 
@@ -78,19 +79,19 @@ public class ReportsViewModel : ViewModelBase
         try
         {
             var filePath = _pdfReportService.GenerateLibraryReport(_dataService.GetReportData());
-            StatusMessage = $"Report saved to: {filePath}";
+            StatusMessage = LocalizationService.Instance.Format("ReportSavedTo", filePath);
             MessageBox.Show(
-                $"PDF report successfully generated:\n{filePath}",
-                "GameVault Report",
+                LocalizationService.Instance.Format("ReportGenerated", filePath),
+                LocalizationService.Instance.Get("GameVaultReport"),
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
         catch (Exception exception)
         {
-            StatusMessage = $"Report could not be generated: {exception.Message}";
+            StatusMessage = LocalizationService.Instance.Format("ReportGenerationFailed", exception.Message);
             MessageBox.Show(
                 StatusMessage,
-                "PDF Report Error",
+                LocalizationService.Instance.Get("PdfReportError"),
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }

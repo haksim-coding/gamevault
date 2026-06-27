@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Net.Http;
 using GameVault.Core.Models;
 using GameVault.Data;
+using GameVault.Localization;
 
 namespace GameVault.Services;
 
@@ -87,7 +88,8 @@ public class DownloadManagerService
             CleanupCancelledDownload(manifestItem);
             _gameRepository.DeleteGameByCatalogId(manifestItem.Id);
             _activityLogRepository.AddEntry("Download cancelled", manifestItem.Title);
-            Report(manifestItem, "Cancelled", 0, 0, manifestItem.SizeBytes, 0, "Download cancelled.", progress);
+                Report(manifestItem, "Cancelled", 0, 0, manifestItem.SizeBytes, 0,
+                    LocalizationService.Instance.Get("DownloadCancelled"), progress);
             return false;
         }
         catch (Exception exception)
@@ -131,74 +133,91 @@ public class DownloadManagerService
 
         var zipPath = Path.Combine(downloadsFolder, $"{manifestItem.Id}.zip");
         var installPath = Path.Combine(defaultInstallFolder, SanitizeFolderName(manifestItem.InstallFolderName));
+        var installationCompleted = false;
+        var extractionStarted = false;
 
-        _gameRepository.AddOrUpdateCatalogGame(new Game
+        try
         {
-            CatalogId = manifestItem.Id,
-            Title = manifestItem.Title,
-            Genre = manifestItem.Genre,
-            ReleaseYear = manifestItem.ReleaseYear,
-            Developer = manifestItem.Developer,
-            InstallStatus = "Queued",
-            DownloadProgress = 0,
-            Version = manifestItem.Version,
-            DownloadUrl = manifestItem.DownloadUrl,
-            CoverImagePath = File.Exists(manifestItem.CachedCoverPath) ? manifestItem.CachedCoverPath : string.Empty,
-            DateAdded = DateTime.Now
-        });
+            _gameRepository.AddOrUpdateCatalogGame(new Game
+            {
+                CatalogId = manifestItem.Id,
+                Title = manifestItem.Title,
+                Genre = manifestItem.Genre,
+                ReleaseYear = manifestItem.ReleaseYear,
+                Developer = manifestItem.Developer,
+                InstallStatus = "Queued",
+                DownloadProgress = 0,
+                Version = manifestItem.Version,
+                DownloadUrl = manifestItem.DownloadUrl,
+                CoverImagePath = File.Exists(manifestItem.CachedCoverPath) ? manifestItem.CachedCoverPath : string.Empty,
+                DateAdded = DateTime.Now
+            });
 
-        _activityLogRepository.AddEntry("Download started", manifestItem.Title);
-        Report(manifestItem, "Queued", 0, 0, manifestItem.SizeBytes, 0, "", progress);
+            _activityLogRepository.AddEntry("Download started", manifestItem.Title);
+            Report(manifestItem, "Queued", 0, 0, manifestItem.SizeBytes, 0, "", progress);
 
-        await DownloadFileAsync(
-            manifestItem,
-            zipPath,
-            progress,
-            cancellationToken);
+            await DownloadFileAsync(
+                manifestItem,
+                zipPath,
+                progress,
+                cancellationToken);
 
-        Report(manifestItem, "Installing", 100, manifestItem.SizeBytes, manifestItem.SizeBytes, 0, "", progress);
-        _gameRepository.UpdateCatalogInstallState(manifestItem.Id, "Installing", 100);
+            Report(manifestItem, "Installing", 100, manifestItem.SizeBytes, manifestItem.SizeBytes, 0, "", progress);
+            _gameRepository.UpdateCatalogInstallState(manifestItem.Id, "Installing", 100);
 
-        var actualHash = _hashService.ComputeSha256(zipPath);
-        if (!string.IsNullOrWhiteSpace(manifestItem.Sha256)
-            && !manifestItem.Sha256.Equals(actualHash, StringComparison.OrdinalIgnoreCase))
-        {
-            throw new InvalidOperationException("Integrity check failed.");
+            var actualHash = _hashService.ComputeSha256(zipPath);
+            if (!string.IsNullOrWhiteSpace(manifestItem.Sha256)
+                && !manifestItem.Sha256.Equals(actualHash, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException(
+                    LocalizationService.Instance.Get("IntegrityCheckFailed"));
+            }
+
+            _activityLogRepository.AddEntry("SHA256 verified", manifestItem.Title);
+
+            if (Directory.Exists(installPath))
+            {
+                Directory.Delete(installPath, recursive: true);
+            }
+
+            extractionStarted = true;
+            ZipFile.ExtractToDirectory(zipPath, installPath);
+            var executablePath = Path.Combine(installPath, manifestItem.ExecutableRelativePath);
+            if (!File.Exists(executablePath))
+            {
+                executablePath = Path.Combine(defaultInstallFolder, manifestItem.ExecutableRelativePath);
+            }
+
+            if (!File.Exists(executablePath))
+            {
+                throw new FileNotFoundException(
+                LocalizationService.Instance.Get("ManifestExecutableMissing"),
+                    executablePath);
+            }
+
+            var coverPath = await TryDownloadCoverAsync(manifestItem, cancellationToken);
+            _gameRepository.UpdateCatalogInstallState(
+                manifestItem.Id,
+                "Installed",
+                100,
+                installPath,
+                executablePath,
+                coverPath);
+
+            installationCompleted = true;
+            _activityLogRepository.AddEntry("Download completed", manifestItem.Title);
+            _activityLogRepository.AddEntry("Game installed from server", manifestItem.Title);
+            Report(manifestItem, "Installed", 100, manifestItem.SizeBytes, manifestItem.SizeBytes, 0, "", progress);
         }
-
-        _activityLogRepository.AddEntry("SHA256 verified", manifestItem.Title);
-
-        if (Directory.Exists(installPath))
+        finally
         {
-            Directory.Delete(installPath, recursive: true);
+            CleanupTemporaryInstallFiles(
+                zipPath,
+                installPath,
+                extractionStarted,
+                installationCompleted,
+                manifestItem.Title);
         }
-
-        ZipFile.ExtractToDirectory(zipPath, installPath);
-        var executablePath = Path.Combine(installPath, manifestItem.ExecutableRelativePath);
-        if (!File.Exists(executablePath))
-        {
-            executablePath = Path.Combine(defaultInstallFolder, manifestItem.ExecutableRelativePath);
-        }
-
-        if (!File.Exists(executablePath))
-        {
-            throw new FileNotFoundException(
-                "The executable from the manifest was not found after extraction.",
-                executablePath);
-        }
-
-        var coverPath = await TryDownloadCoverAsync(manifestItem, cancellationToken);
-        _gameRepository.UpdateCatalogInstallState(
-            manifestItem.Id,
-            "Installed",
-            100,
-            installPath,
-            executablePath,
-            coverPath);
-
-        _activityLogRepository.AddEntry("Download completed", manifestItem.Title);
-        _activityLogRepository.AddEntry("Game installed from server", manifestItem.Title);
-        Report(manifestItem, "Installed", 100, manifestItem.SizeBytes, manifestItem.SizeBytes, 0, "", progress);
     }
 
     private async Task DownloadFileAsync(
@@ -304,20 +323,49 @@ public class DownloadManagerService
             {
                 File.Delete(zipPath);
             }
+        }
+        catch
+        {
+            // Cancellation cleanup is best-effort; the user-facing result is still cancelled.
+        }
+    }
 
-            var settings = _settingsService.Load();
-            var defaultInstallFolder = string.IsNullOrWhiteSpace(settings.DefaultInstallFolder)
-                ? new AppSettings().DefaultInstallFolder
-                : settings.DefaultInstallFolder;
-            var installPath = Path.Combine(defaultInstallFolder, SanitizeFolderName(manifestItem.InstallFolderName));
-            if (Directory.Exists(installPath))
+    private void CleanupTemporaryInstallFiles(
+        string zipPath,
+        string installPath,
+        bool extractionStarted,
+        bool installationCompleted,
+        string gameTitle)
+    {
+        var cleanupFailed = false;
+        try
+        {
+            if (File.Exists(zipPath))
+            {
+                File.Delete(zipPath);
+                _activityLogRepository.AddEntry("DownloadZipDeleted", gameTitle);
+            }
+        }
+        catch
+        {
+            cleanupFailed = true;
+        }
+
+        try
+        {
+            if (extractionStarted && !installationCompleted && Directory.Exists(installPath))
             {
                 Directory.Delete(installPath, recursive: true);
             }
         }
         catch
         {
-            // Cancellation cleanup is best-effort; the user-facing result is still cancelled.
+            cleanupFailed = true;
+        }
+
+        if (cleanupFailed)
+        {
+            _activityLogRepository.AddEntry("DownloadTempCleanupFailed", gameTitle);
         }
     }
 
